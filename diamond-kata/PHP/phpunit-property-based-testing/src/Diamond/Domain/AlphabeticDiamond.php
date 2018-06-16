@@ -26,24 +26,24 @@ class AlphabeticDiamond
         $this->alphabet = $alphabet;
         $this->fillerCharacter = $fillerCharacter;
 
-        $vIndex = 0;
+        $verticalPosition = 0;
         $letterIndex = $firstOccurrence = $alphabet->letterIndex($letter);
 
-        while ($vIndex <= $letterIndex) {
-            $this->addRow($vIndex, $firstOccurrence, $letterIndex);
+        while ($verticalPosition <= $letterIndex) {
+            $this->addRow($verticalPosition, $firstOccurrence, $letterIndex);
 
             --$firstOccurrence;
-            ++$vIndex;
+            ++$verticalPosition;
         }
 
-        $vIndex -= 2;
+        $verticalPosition -= 2;
         $firstOccurrence = 1;
 
-        while ($vIndex >= 0) {
-            $this->addRow($vIndex, $firstOccurrence, $letterIndex);
+        while ($verticalPosition >= 0) {
+            $this->addRow($verticalPosition, $firstOccurrence, $letterIndex);
 
             ++$firstOccurrence;
-            --$vIndex;
+            --$verticalPosition;
         }
     }
 
@@ -62,13 +62,13 @@ class AlphabeticDiamond
         }
     }
 
-    private function addRow(int $vIndex, int $firstOccurrence, int $letterIndex): void
+    private function addRow(int $verticalPosition, int $firstOccurrence, int $letterIndex): void
     {
-        $lastOccurrence = $vIndex + $letterIndex;
+        $lastOccurrence = $verticalPosition + $letterIndex;
 
-        for ($hIndex = 0; $hIndex <= $lastOccurrence; ++$hIndex) {
-            if ($hIndex == $firstOccurrence || $hIndex == $lastOccurrence) {
-                $this->output[] = $this->alphabet->letterAt($vIndex);
+        for ($horizontalPosition = 0; $horizontalPosition <= $lastOccurrence; ++$horizontalPosition) {
+            if ($horizontalPosition == $firstOccurrence || $horizontalPosition == $lastOccurrence) {
+                $this->output[] = $this->alphabet->letterAt($verticalPosition);
             } else {
                 $this->output[] = $this->fillerCharacter;
             }
