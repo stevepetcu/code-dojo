@@ -69,7 +69,8 @@ class AlphabeticDiamondTest extends TestCase
 
         $this->diamond = new AlphabeticDiamond(
             $this->mockAlphabet,
-            static::BATPHABELT[$this->letterIndex]
+            static::BATPHABELT[$this->letterIndex],
+            '-'
         );
 
         $this->diamondRows = explode("\n", $this->diamond->__toString());
@@ -85,6 +86,17 @@ class AlphabeticDiamondTest extends TestCase
         $alphabetMock = $this->createMock(Alphabet::class);
 
         new AlphabeticDiamond($alphabetMock, '3');
+    }
+
+    public function testAcceptsOnlyNonWordCharactersAsFillerCharacter()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Invalid input. Please enter one non-word character as filler.');
+
+        /** @var Alphabet|MockObject $alphabetMock */
+        $alphabetMock = $this->createMock(Alphabet::class);
+
+        new AlphabeticDiamond($alphabetMock, 'A', 'B');
     }
 
     public function testMaximumWidthAndHeightOfDiamondAlwaysEqualDoubleTheGivenLetterIndexPlusOne()

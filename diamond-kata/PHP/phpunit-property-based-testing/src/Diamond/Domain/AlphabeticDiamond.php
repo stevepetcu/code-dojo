@@ -17,15 +17,14 @@ class AlphabeticDiamond
 
     private $output = [];
 
-    public function __construct(Alphabet $alphabet, String $letter)
+    private $fillerCharacter;
+
+    public function __construct(Alphabet $alphabet, string $letter, string $fillerCharacter = ' ')
     {
-        if (!(ctype_alpha($letter) && strlen($letter) === 1)) {
-            throw new \InvalidArgumentException(
-                'Invalid input. Please enter one English alphabetical letter.'
-            );
-        }
+        $this->validateInput($letter, $fillerCharacter);
 
         $this->alphabet = $alphabet;
+        $this->fillerCharacter = $fillerCharacter;
 
         $vIndex = 0;
         $letterIndex = $firstOccurrence = $alphabet->letterIndex($letter);
@@ -48,6 +47,21 @@ class AlphabeticDiamond
         }
     }
 
+    private function validateInput(string $letter, string $fillerCharacter): void
+    {
+        if (!preg_match('/^[A-Za-z]$/', $letter)) {
+            throw new \InvalidArgumentException(
+                'Invalid input. Please enter one English alphabetical letter.'
+            );
+        }
+
+        if (!preg_match('/^\W$/', $fillerCharacter)) {
+            throw new \InvalidArgumentException(
+                'Invalid input. Please enter one non-word character as filler.'
+            );
+        }
+    }
+
     private function addRow(int $vIndex, int $firstOccurrence, int $letterIndex): void
     {
         $lastOccurrence = $vIndex + $letterIndex;
@@ -56,7 +70,7 @@ class AlphabeticDiamond
             if ($hIndex == $firstOccurrence || $hIndex == $lastOccurrence) {
                 $this->output[] = $this->alphabet->letterAt($vIndex);
             } else {
-                $this->output[] = '-';
+                $this->output[] = $this->fillerCharacter;
             }
         }
 

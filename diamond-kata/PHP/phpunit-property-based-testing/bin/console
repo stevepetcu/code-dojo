@@ -1,5 +1,5 @@
 #!/usr/bin/env php
-<?php declare(strict_types=1);
+<?php
 
 use DiamondKata\Diamond\Domain\Alphabet;
 use DiamondKata\Diamond\Domain\AlphabeticDiamond;
@@ -8,6 +8,10 @@ require __DIR__ . "/../vendor/autoload.php";
 
 $letter = readline('Please enter a letter: ');
 
+$fillerCharacter = readline('Please enter a non-word filler character [ ]: ');
+
+$fillerCharacter = empty($fillerCharacter) ? ' ' : $fillerCharacter;
+
 $alphabet = new Alphabet(require __DIR__ . '/../config/bootstrap.php');
 
-echo new AlphabeticDiamond($alphabet, $letter) . "\n";
+echo new AlphabeticDiamond($alphabet, $letter, $fillerCharacter) . "\n";
