@@ -8,11 +8,18 @@ class Alphabet
 
     public function __construct(array $characterSet)
     {
-        $this->characterSet = array_unique($characterSet);
+        $this->characterSet = array_map(
+            function (string $character) {
+                return strtoupper($character);
+            },
+            array_values(array_unique($characterSet))
+        );
     }
 
     public function indexOf(string $character): int
     {
+        $character = strtoupper($character);
+
         $index = array_search($character, $this->characterSet);
 
         if (!is_int($index)) {

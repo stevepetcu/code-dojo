@@ -17,18 +17,18 @@ class AlphabetSpec extends ObjectBehavior
         $this->shouldHaveType(Alphabet::class);
     }
 
-    function it_can_return_the_index_of_a_character()
+    function it_can_return_the_index_of_a_character_in_a_case_insensitive_way()
     {
         $this->indexOf('a')->shouldBe(0);
-        $this->indexOf('d')->shouldBe(3);
-        $this->indexOf('g')->shouldBe(6);
+        $this->indexOf('D')->shouldBe(3);
+        $this->indexOf('G')->shouldBe(6);
     }
 
-    function it_can_return_the_character_at_a_specified_index()
+    function it_can_return_the_normalised_character_at_a_specified_index()
     {
-        $this->characterAt(0)->shouldBe('a');
-        $this->characterAt(3)->shouldBe('d');
-        $this->characterAt(6)->shouldBe('g');
+        $this->characterAt(0)->shouldBe('A');
+        $this->characterAt(3)->shouldBe('D');
+        $this->characterAt(6)->shouldBe('G');
     }
 
     function it_should_throw_out_of_bounds_exception_when_requesting_a_character_not_in_the_alphabet()
@@ -56,5 +56,9 @@ class AlphabetSpec extends ObjectBehavior
         $this
             ->shouldThrow(new \OutOfBoundsException('Index 3 is invalid for this alphabet.'))
             ->during('characterAt', [3]);
+
+        $this->characterAt(0)->shouldBe('A');
+        $this->characterAt(1)->shouldBe('B');
+        $this->characterAt(2)->shouldBe('K');
     }
 }
