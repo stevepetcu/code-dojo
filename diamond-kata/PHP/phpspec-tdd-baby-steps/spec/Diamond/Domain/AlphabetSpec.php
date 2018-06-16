@@ -48,4 +48,13 @@ class AlphabetSpec extends ObjectBehavior
             ->shouldThrow(new \OutOfBoundsException('Index 7 is invalid for this alphabet.'))
             ->during('characterAt', [7]);
     }
+
+    function it_should_normalise_its_input_character_set_to_all_uppercase_and_only_unique_characters()
+    {
+        $this->beConstructedWith(['a', 'b', 'b', 'a', 'a', 'k', 'k', 'a']);
+
+        $this
+            ->shouldThrow(new \OutOfBoundsException('Index 3 is invalid for this alphabet.'))
+            ->during('characterAt', [3]);
+    }
 }

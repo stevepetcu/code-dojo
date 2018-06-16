@@ -8,7 +8,7 @@ class Alphabet
 
     public function __construct(array $characterSet)
     {
-        $this->characterSet = $characterSet;
+        $this->characterSet = array_unique($characterSet);
     }
 
     public function indexOf(string $character): int
