@@ -1,16 +1,18 @@
 # The Diamond Kata
 
 ## Problem description
-Given an alphabet &Lambda;, beginning with a character &alpha; and given an arbitrary character &tau;, belonging to the alphabet,
-print a diamond starting with the character &alpha;, with the character &tau; at its widest point and having a palindromic shape 
-over both of its (X and Y) axes.
+**Given**: an alphabet &Lambda;, beginning with a character &alpha;;
+
+**Given**: an arbitrary character &tau;, belonging to the alphabet;
+
+**Requirements**: print a diamond starting with the character &alpha;, having the character &tau; at its widest point and having a palindromic shape over both of its (X and Y) axes.
 
 ## Example
 Given:
 - &Lambda; = A, B, C, D, E, F, G, H, I, J
 - &tau; = D
 
-The resulting diamond would be:
+Expected result:
 ```
    A
   B B
