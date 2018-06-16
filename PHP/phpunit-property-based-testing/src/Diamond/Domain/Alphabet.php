@@ -17,7 +17,14 @@ class Alphabet
 
     public function __construct(array $alphabet)
     {
-        $this->alphabet = array_unique($alphabet);
+        $this->alphabet = array_map(
+            function ($letter) {
+                return strtoupper($letter);
+            },
+            array_values(
+                array_unique($alphabet)
+            )
+        );
     }
 
     /**
@@ -26,7 +33,7 @@ class Alphabet
     public function letterAt(int $index): string
     {
         if (!isset($this->alphabet[$index])) {
-            throw new \OutOfBoundsException('Requested index not in the alphabet.');
+            throw new \OutOfBoundsException("Requested index $index not in the alphabet.");
         }
 
         return $this->alphabet[$index];
@@ -37,10 +44,12 @@ class Alphabet
      */
     public function letterIndex(string $letter): int
     {
-        $letterIndex = array_search(strtoupper($letter), $this->alphabet, true);
+        $letter = strtoupper($letter);
+
+        $letterIndex = array_search($letter, $this->alphabet, true);
 
         if (!is_int($letterIndex)) {
-            throw new \OutOfBoundsException('The specified value is not a letter of the alphabet.');
+            throw new \OutOfBoundsException("The specified value '$letter' is not a character of this alphabet.");
         }
 
         return $letterIndex;
