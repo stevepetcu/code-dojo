@@ -17,7 +17,7 @@ class AlphabeticDiamond
 
     private $letter;
 
-    private $output = [];
+    private $rendering = [];
 
     public function __construct(array $alphabet, string $letter)
     {
@@ -39,7 +39,7 @@ class AlphabeticDiamond
 
     public function __toString(): string
     {
-        return implode($this->output);
+        return implode($this->rendering);
     }
 
     private function buildTopHalf(int $letterPosition, int $firstOccurrence, int $lastOccurrence): array
@@ -57,7 +57,7 @@ class AlphabeticDiamond
             ++$lastOccurrence;
             --$firstOccurrence;
 
-            $this->output[] = "\n";
+            $this->rendering[] = "\n";
         }
 
         return compact('verticalPosition', 'firstOccurrence', 'lastOccurrence');
@@ -66,7 +66,7 @@ class AlphabeticDiamond
     private function buildBottomHalf(int $verticalPosition, int $firstOccurrence, int $lastOccurrence): void
     {
         while ($verticalPosition > 0) {
-            $this->output[] = "\n";
+            $this->rendering[] = "\n";
 
             --$verticalPosition;
             --$lastOccurrence;
@@ -80,9 +80,9 @@ class AlphabeticDiamond
     {
         for ($horizontalPosition = 0; $horizontalPosition <= $lastOccurrence; ++$horizontalPosition) {
             if ($horizontalPosition == $firstOccurrence || $horizontalPosition == $lastOccurrence) {
-                $this->output[] = $this->alphabet[$verticalPosition];
+                $this->rendering[] = $this->alphabet[$verticalPosition];
             } else {
-                $this->output[] = ' ';
+                $this->rendering[] = ' ';
             }
         }
     }
