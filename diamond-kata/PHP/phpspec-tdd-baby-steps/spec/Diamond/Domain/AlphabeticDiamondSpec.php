@@ -4,12 +4,23 @@ namespace spec\DiamondKata\Diamond\Domain;
 
 use DiamondKata\Diamond\Domain\AlphabeticDiamond;
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 
 class AlphabeticDiamondSpec extends ObjectBehavior
 {
-    function it_is_initializable()
+    function let()
+    {
+        $this->beConstructedWith(['a', 'b', 'c'], 'b');
+    }
+
+    function it_is_instantiable()
     {
         $this->shouldHaveType(AlphabeticDiamond::class);
+    }
+
+    function it_can_output_a_letter()
+    {
+        $expectedOutput = " a\nb b\n";
+
+        $this->__toString()->shouldBe($expectedOutput);
     }
 }
