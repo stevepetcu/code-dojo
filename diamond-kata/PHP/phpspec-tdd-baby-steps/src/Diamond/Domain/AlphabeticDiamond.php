@@ -23,30 +23,26 @@ class AlphabeticDiamond
     {
         $this->alphabet = $alphabet;
         $this->letter = $letter;
-    }
 
-    public function __toString(): string
-    {
         $letterPosition = array_search($this->letter, $this->alphabet);
 
         $firstOccurrence = $lastOccurrence = $letterPosition;
 
-        $verticalPosition = $this->buildTopHalf($letterPosition, $firstOccurrence, $lastOccurrence);
+        [
+            'verticalPosition' => $verticalPosition,
+            'firstOccurrence' => $firstOccurrence,
+            'lastOccurrence' => $lastOccurrence
+        ] = $this->buildTopHalf($letterPosition, $firstOccurrence, $lastOccurrence);
 
-        while ($verticalPosition > 0) {
-            $this->output[] = "\n";
+        $this->buildBottomHalf($verticalPosition, $firstOccurrence, $lastOccurrence);
+    }
 
-            --$verticalPosition;
-            --$lastOccurrence;
-            ++$firstOccurrence;
-
-            $this->buildRow($verticalPosition, $firstOccurrence, $lastOccurrence);
-        }
-
+    public function __toString(): string
+    {
         return implode($this->output);
     }
 
-    private function buildTopHalf(int $letterPosition, int &$firstOccurrence, int &$lastOccurrence): int
+    private function buildTopHalf(int $letterPosition, int $firstOccurrence, int $lastOccurrence): array
     {
         $verticalPosition = 0;
 
@@ -64,7 +60,20 @@ class AlphabeticDiamond
             $this->output[] = "\n";
         }
 
-        return $verticalPosition;
+        return compact('verticalPosition', 'firstOccurrence', 'lastOccurrence');
+    }
+
+    private function buildBottomHalf(int $verticalPosition, int $firstOccurrence, int $lastOccurrence): void
+    {
+        while ($verticalPosition > 0) {
+            $this->output[] = "\n";
+
+            --$verticalPosition;
+            --$lastOccurrence;
+            ++$firstOccurrence;
+
+            $this->buildRow($verticalPosition, $firstOccurrence, $lastOccurrence);
+        }
     }
 
     private function buildRow(int $verticalPosition, int $firstOccurrence, int $lastOccurrence)
