@@ -13,6 +13,21 @@ class Alphabet
 
     public function indexOf(string $character): int
     {
-        return array_search($character, $this->characterSet);
+        $index = array_search($character, $this->characterSet);
+
+        if (!is_int($index)) {
+            throw new \OutOfBoundsException("Character $character is not in the alphabet.");
+        }
+
+        return $index;
+    }
+
+    public function characterAt(int $index): string
+    {
+        if (!isset($this->characterSet[$index])) {
+            throw new \OutOfBoundsException("Index $index is invalid for this alphabet.");
+        }
+
+        return $this->characterSet[$index];
     }
 }
