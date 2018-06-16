@@ -17,6 +17,8 @@ class AlphabeticDiamond
 
     private $letter;
 
+    private $output = [];
+
     public function __construct(array $alphabet, string $letter)
     {
         $this->alphabet = $alphabet;
@@ -29,12 +31,27 @@ class AlphabeticDiamond
 
         $firstOccurrence = $lastOccurrence = $letterPosition;
 
-        $output = [];
+        $verticalPosition = $this->buildTopHalf($letterPosition, $firstOccurrence, $lastOccurrence);
 
+        while ($verticalPosition > 0) {
+            $this->output[] = "\n";
+
+            --$verticalPosition;
+            --$lastOccurrence;
+            ++$firstOccurrence;
+
+            $this->buildRow($verticalPosition, $firstOccurrence, $lastOccurrence);
+        }
+
+        return implode($this->output);
+    }
+
+    private function buildTopHalf(int $letterPosition, int &$firstOccurrence, int &$lastOccurrence): int
+    {
         $verticalPosition = 0;
 
         while ($verticalPosition <= $letterPosition) {
-            $this->buildRow($verticalPosition, $firstOccurrence, $lastOccurrence, $output);
+            $this->buildRow($verticalPosition, $firstOccurrence, $lastOccurrence);
 
             if ($verticalPosition == $letterPosition) {
                 break;
@@ -44,29 +61,19 @@ class AlphabeticDiamond
             ++$lastOccurrence;
             --$firstOccurrence;
 
-            $output[] = "\n";
+            $this->output[] = "\n";
         }
 
-        while ($verticalPosition > 0) {
-            $output[] = "\n";
-
-            --$verticalPosition;
-            --$lastOccurrence;
-            ++$firstOccurrence;
-
-            $this->buildRow($verticalPosition, $firstOccurrence, $lastOccurrence, $output);
-        }
-
-        return implode($output);
+        return $verticalPosition;
     }
 
-    private function buildRow(int $verticalPosition, int $firstOccurrence, int $lastOccurrence, array &$output)
+    private function buildRow(int $verticalPosition, int $firstOccurrence, int $lastOccurrence)
     {
         for ($horizontalPosition = 0; $horizontalPosition <= $lastOccurrence; ++$horizontalPosition) {
             if ($horizontalPosition == $firstOccurrence || $horizontalPosition == $lastOccurrence) {
-                $output[] = $this->alphabet[$verticalPosition];
+                $this->output[] = $this->alphabet[$verticalPosition];
             } else {
-                $output[] = ' ';
+                $this->output[] = ' ';
             }
         }
     }
