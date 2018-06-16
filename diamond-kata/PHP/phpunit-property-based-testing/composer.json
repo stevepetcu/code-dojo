@@ -15,7 +15,7 @@
   },
   "autoload": {
     "psr-4": {
-      "DiamondKata\\": "src/"
+      "DiamondKata\\": "./src/"
     }
   },
   "autoload-dev": {
