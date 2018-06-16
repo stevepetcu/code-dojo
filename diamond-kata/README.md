@@ -44,7 +44,7 @@ D-----D
 
 ### Think about how the diamond's properties
 - what are its height and width?
-- what's the relation between the character's first position in a row, and its last position, as we build the diamond?
+- what's the relation between a character's first position in a row, and its last position, as we build the diamond?
 - what's a simple way of dealing with the diamond's tips - which contain only 1 character (hard-coding excluded)?
 </details>
 
@@ -52,5 +52,5 @@ D-----D
 <summary>Tip #3: Building the diamond</summary>
 
 ### Building the diamond
-Try to build the first "half" of the diamond (down to the &tau; character). Building the second half should be easy - it's (almost) a mirror of the first.
+Try to build the first "half" of the diamond (down to the &tau; character). Building the second "half" should be easy - it's (almost) a mirror of the first.
 </details>
