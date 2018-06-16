@@ -1,4 +1,13 @@
-<?php
+<?php declare(strict_types=1);
+
+/*
+ * This file is part of the DiamondKata application.
+ *
+ * © Stefan Petcu <hello@stefanpetcu.com>
+ *
+ * For the full copyright and license information, please view
+ * the LICENSE file that was distributed with this source code.
+ */
 
 namespace DiamondKata\Diamond\Domain;
 
@@ -16,6 +25,9 @@ class Alphabet
         );
     }
 
+    /**
+     * @throws \OutOfBoundsException when the requested character is not in the alphabet.
+     */
     public function indexOf(string $character): int
     {
         $character = strtoupper($character);
@@ -29,6 +41,9 @@ class Alphabet
         return $index;
     }
 
+    /**
+     * @throws \OutOfBoundsException when the requested character index is not in the alphabet.
+     */
     public function characterAt(int $index): string
     {
         if (!isset($this->characterSet[$index])) {
