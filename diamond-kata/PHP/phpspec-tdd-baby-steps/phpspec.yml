@@ -1,0 +1,7 @@
+suites:
+
+bootstrap:
+  ./spec/bootstrap.php
+
+formatter:
+  name: pretty
