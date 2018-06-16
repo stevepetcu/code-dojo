@@ -1,7 +1,4 @@
-suites:
-
-bootstrap:
-  ./spec/bootstrap.php
+composer_suite_detection: true
 
 formatter:
   name: pretty
