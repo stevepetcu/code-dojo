@@ -76,7 +76,6 @@ class AlphabeticDiamondTest extends TestCase
         $this->diamondRows = explode("\n", $this->diamond->__toString());
     }
 
-    /** @expectedException \InvalidArgumentException */
     public function testAcceptsOnlyAlphabeticalCharacters()
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -135,11 +134,20 @@ class AlphabeticDiamondTest extends TestCase
     /** @depends testMaximumWidthAndHeightOfDiamondAlwaysEqualDoubleTheGivenLetterIndexPlusOne */
     public function testWidestDiamondLineContainsOnlyTheGivenLetterAsTheFirstAndLastCharacter()
     {
-        $this->assertEquals(
-            static::BATPHABELT[$this->letterIndex] . static::BATPHABELT[$this->letterIndex],
-            str_replace('-', '', $this->diamondRows[$this->letterIndex]),
+        $middleLineCharacters = str_replace('-', '', $this->diamondRows[$this->letterIndex]);
+        $middleLineCharactersCount = strlen($middleLineCharacters);
+
+        $this->assertContains(
+            static::BATPHABELT[$this->letterIndex],
+            $middleLineCharacters,
             'Expected the widest diamond line to only contain the given letter '
-            . $this->diamondRows[$this->letterIndex] . ' (twice) as relevant characters.'
+            . $this->diamondRows[$this->letterIndex] . '.'
+        );
+
+        $this->assertTrue(
+            1 <= $middleLineCharactersCount && 2 >= $middleLineCharacters,
+            'Expected middle diamond line to contain the character '
+            . $this->diamondRows[$this->letterIndex] . ' between 1 and 2 times.'
         );
     }
 }
