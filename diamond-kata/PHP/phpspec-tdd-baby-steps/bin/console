@@ -8,4 +8,6 @@ require __DIR__ . "/../vendor/autoload.php";
 
 $letter = readline('Please enter a letter: ');
 
-echo new AlphabeticDiamond(['A', 'B', 'C', 'D', 'E', 'F'], $letter) . "\n";
+$alphabet = new Alphabet(['A', 'B', 'C', 'D', 'E', 'F']);
+
+echo new AlphabeticDiamond($alphabet, $letter) . "\n";

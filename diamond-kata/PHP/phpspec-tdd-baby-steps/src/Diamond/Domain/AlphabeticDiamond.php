@@ -19,12 +19,12 @@ class AlphabeticDiamond
 
     private $rendering = [];
 
-    public function __construct(array $alphabet, string $letter)
+    public function __construct(Alphabet $alphabet, string $letter)
     {
         $this->alphabet = $alphabet;
         $this->letter = $letter;
 
-        $letterPosition = array_search($this->letter, $this->alphabet);
+        $letterPosition = $this->alphabet->indexOf($letter);
 
         $firstOccurrence = $lastOccurrence = $letterPosition;
 
@@ -80,7 +80,7 @@ class AlphabeticDiamond
     {
         for ($horizontalPosition = 0; $horizontalPosition <= $lastOccurrence; ++$horizontalPosition) {
             if ($horizontalPosition == $firstOccurrence || $horizontalPosition == $lastOccurrence) {
-                $this->rendering[] = $this->alphabet[$verticalPosition];
+                $this->rendering[] = $this->alphabet->characterAt($verticalPosition);
             } else {
                 $this->rendering[] = ' ';
             }
