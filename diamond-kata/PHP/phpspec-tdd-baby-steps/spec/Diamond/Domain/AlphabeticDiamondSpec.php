@@ -19,7 +19,7 @@ class AlphabeticDiamondSpec extends ObjectBehavior
 
     function it_can_output_a_letter()
     {
-        $expectedOutput = " a\nb b\n a\n";
+        $expectedOutput = " a\nb b\n a";
 
         $this->__toString()->shouldBe($expectedOutput);
     }

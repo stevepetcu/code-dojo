@@ -34,12 +34,10 @@ class AlphabeticDiamond
         $verticalPosition = 0;
 
         while ($verticalPosition <= $letterPosition) {
-            for ($horizontalPosition = 0; $horizontalPosition <= $lastOccurrence; ++$horizontalPosition) {
-                if ($horizontalPosition == $firstOccurrence || $horizontalPosition == $lastOccurrence) {
-                    $output[] = $this->alphabet[$verticalPosition];
-                } else {
-                    $output[] = ' ';
-                }
+            $this->buildRow($verticalPosition, $firstOccurrence, $lastOccurrence, $output);
+
+            if ($verticalPosition == $letterPosition) {
+                break;
             }
 
             ++$verticalPosition;
@@ -49,27 +47,27 @@ class AlphabeticDiamond
             $output[] = "\n";
         }
 
-        --$verticalPosition;
-        --$lastOccurrence;
-        ++$firstOccurrence;
-
         while ($verticalPosition > 0) {
+            $output[] = "\n";
 
             --$verticalPosition;
             --$lastOccurrence;
             ++$firstOccurrence;
 
-            for ($horizontalPosition = 0; $horizontalPosition <= $lastOccurrence; ++$horizontalPosition) {
-                if ($horizontalPosition == $firstOccurrence || $horizontalPosition == $lastOccurrence) {
-                    $output[] = $this->alphabet[$verticalPosition];
-                } else {
-                    $output[] = ' ';
-                }
-            }
-
-            $output[] = "\n";
+            $this->buildRow($verticalPosition, $firstOccurrence, $lastOccurrence, $output);
         }
 
         return implode($output);
+    }
+
+    private function buildRow(int $verticalPosition, int $firstOccurrence, int $lastOccurrence, array &$output)
+    {
+        for ($horizontalPosition = 0; $horizontalPosition <= $lastOccurrence; ++$horizontalPosition) {
+            if ($horizontalPosition == $firstOccurrence || $horizontalPosition == $lastOccurrence) {
+                $output[] = $this->alphabet[$verticalPosition];
+            } else {
+                $output[] = ' ';
+            }
+        }
     }
 }
