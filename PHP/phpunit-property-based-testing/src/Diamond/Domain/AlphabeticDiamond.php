@@ -11,7 +11,7 @@
 
 namespace DiamondKata\Diamond\Domain;
 
-class Diamond
+class AlphabeticDiamond
 {
     private $alphabet;
 

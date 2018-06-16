@@ -12,11 +12,11 @@
 namespace Test\Unit\Diamond\Domain;
 
 use DiamondKata\Diamond\Domain\Alphabet;
-use DiamondKata\Diamond\Domain\Diamond;
+use DiamondKata\Diamond\Domain\AlphabeticDiamond;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
-class DiamondTest extends TestCase
+class AlphabeticDiamondTest extends TestCase
 {
     const BATPHABELT = [
         'I',
@@ -31,7 +31,12 @@ class DiamondTest extends TestCase
     /** @var Alphabet|MockObject */
     private $mockAlphabet;
 
+    /** @var AlphabeticDiamond */
+    private $diamond;
+
     private $letterIndex = 0;
+
+    private $diamondRows;
 
     public function setUp()
     {
@@ -61,41 +66,68 @@ class DiamondTest extends TestCase
                     return static::BATPHABELT[$index];
                 }
             );
-    }
 
-    public function testMaximumWidthAndHeightOfDiamondAlwaysEqualDoubleTheGivenLetterIndexPlusOne()
-    {
-        $diamond = new Diamond(
+        $this->diamond = new AlphabeticDiamond(
             $this->mockAlphabet,
             static::BATPHABELT[$this->letterIndex]
         );
 
-        $diamondStringRows = explode("\n", $diamond->__toString());
+        $this->diamondRows = explode("\n", $this->diamond->__toString());
+    }
 
+    /** @expectedException \InvalidArgumentException */
+    public function testAcceptsOnlyAlphabeticalCharacters()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Invalid input. Please enter one English alphabetical letter.');
+
+        /** @var Alphabet|MockObject $alphabetMock */
+        $alphabetMock = $this->createMock(Alphabet::class);
+
+        new AlphabeticDiamond($alphabetMock, '3');
+    }
+
+    public function testMaximumWidthAndHeightOfDiamondAlwaysEqualDoubleTheGivenLetterIndexPlusOne()
+    {
         $maxDiagonalLength = 2 * $this->letterIndex + 1;
 
         $this->assertEquals(
             $maxDiagonalLength,
-            strlen($diamondStringRows[$this->letterIndex]),
+            strlen($this->diamondRows[$this->letterIndex]),
             "The diamond should be $maxDiagonalLength characters in width at its widest point."
         );
 
         $this->assertEquals(
             $maxDiagonalLength,
-            count($diamondStringRows),
+            count($this->diamondRows),
             "The diamond should be {$this->letterIndex} characters in height."
         );
     }
 
     /** @depends testMaximumWidthAndHeightOfDiamondAlwaysEqualDoubleTheGivenLetterIndexPlusOne */
-    public function testDiamondStartsAndEndsWithFirstLetterOfTheAlphabet()
+    public function testDiamondStartsAndEndsWithFirstLetterOfItsAlphabet()
     {
-        $this->markTestIncomplete('Add code.');
+        $this->assertEquals(
+            'I',
+            ltrim($this->diamondRows[0], '-'),
+            "The diamond should start with the letter 'I'."
+        );
+
+        $this->assertEquals(
+            'I',
+            ltrim(end($this->diamondRows), '-'),
+            "The diamond should start with the letter 'I'."
+        );
     }
 
     /** @depends testMaximumWidthAndHeightOfDiamondAlwaysEqualDoubleTheGivenLetterIndexPlusOne */
     public function testWidestDiamondLineContainsOnlyTheGivenLetterAsTheFirstAndLastCharacter()
     {
-        $this->markTestIncomplete('Add code.');
+        $this->assertEquals(
+            static::BATPHABELT[$this->letterIndex] . static::BATPHABELT[$this->letterIndex],
+            str_replace('-', '', $this->diamondRows[$this->letterIndex]),
+            'Expected the widest diamond line to only contain the given letter '
+            . $this->diamondRows[$this->letterIndex] . ' (twice) as relevant characters.'
+        );
     }
 }
