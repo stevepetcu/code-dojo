@@ -1,4 +1,12 @@
 {
+  "description": "Over-engineered Diamond Kata using PHPUnit for property-based testing.",
+  "type": "kata",
+  "authors": [
+    {
+      "name": "Stefan Petcu",
+      "email": "hello@stefanpetcu.com"
+    }
+  ],
   "require": {
     "php": "^7.2"
   },
@@ -7,7 +15,11 @@
   },
   "autoload": {
     "psr-4": {
-      "DiamondKata\\": "src/",
+      "DiamondKata\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
       "Test\\": "test/"
     }
   }
