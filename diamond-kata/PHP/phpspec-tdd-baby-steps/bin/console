@@ -6,8 +6,8 @@ use DiamondKata\Diamond\Domain\AlphabeticDiamond;
 
 require __DIR__ . "/../vendor/autoload.php";
 
-$letter = readline('Please enter a letter: ');
+$alphabet = new Alphabet(require __DIR__ . '/../config/bootstrap.php');
 
-$alphabet = new Alphabet(['A', 'B', 'C', 'D', 'E', 'F']);
+$letter = readline('Please enter a letter: ');
 
 echo new AlphabeticDiamond($alphabet, $letter) . "\n";
