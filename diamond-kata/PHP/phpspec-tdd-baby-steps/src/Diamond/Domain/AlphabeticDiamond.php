@@ -21,6 +21,10 @@ class AlphabeticDiamond
 
     public function __construct(Alphabet $alphabet, string $letter)
     {
+        if (!preg_match('/^[A-Za-z]$/', $letter)) {
+            throw new \InvalidArgumentException('Invalid input. Please enter one English letter.');
+        }
+
         $this->alphabet = $alphabet;
         $this->letter = $letter;
 

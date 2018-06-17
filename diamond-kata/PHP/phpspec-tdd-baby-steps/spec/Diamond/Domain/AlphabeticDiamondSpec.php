@@ -41,4 +41,11 @@ class AlphabeticDiamondSpec extends ObjectBehavior
 
         $this->__toString()->shouldBe($expectedOutput);
     }
+
+    function it_will_throw_invalid_argument_exception_if_2nd_constructor_argument_is_not_an_english_letter($alphabet)
+    {
+        $this
+            ->shouldThrow(new \InvalidArgumentException('Invalid input. Please enter one English letter.'))
+            ->during('__construct', [$alphabet, '1']);
+    }
 }
