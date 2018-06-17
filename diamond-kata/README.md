@@ -5,7 +5,7 @@
 
 **Given**: an arbitrary character &tau;, belonging to the alphabet;
 
-**Requirements**: print a diamond starting with the character &alpha;, having the character &tau; at its widest point and having a palindromic shape over both of its (X and Y) axes.
+**Requirements**: print a diamond starting with the character &alpha;, having the character &tau; at its widest point and having a palindromic (symmetric) shape over both of its (X and Y) axes.
 
 ## Example
 Given:
