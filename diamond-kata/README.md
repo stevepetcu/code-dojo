@@ -45,6 +45,7 @@ D-----D
 ### Think about how the diamond's properties
 - what are its height and width?
 - what's the relation between a character's first position in a row, and its last position, as we build the diamond?
+- what's the relation between the diamond's height and width - and the currently printed character's index in the alphabet?
 - what's a simple way of dealing with the diamond's tips - which contain only 1 character (hard-coding excluded)?
 </details>
 
