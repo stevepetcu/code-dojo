@@ -9,3 +9,11 @@ services:
       - ./:/usr/src/junit-tdd
     working_dir: /usr/src/junit-tdd
     entrypoint: ./docker/java/scripts/entrypoint.sh
+
+  maven:
+    build:
+      context: ./docker/maven
+    volumes:
+      - ./:/usr/src/junit-tdd
+    working_dir: /usr/src/junit-tdd
+    entrypoint: ./docker/maven/scripts/entrypoint.sh
