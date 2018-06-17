@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+
+  java:
+    build:
+      context: ./docker/java
+    volumes:
+      - ./:/usr/src/junit-tdd
+    working_dir: /usr/src/junit-tdd
+    entrypoint: ./docker/java/entrypoint.sh
