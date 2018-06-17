@@ -8,4 +8,4 @@ services:
     volumes:
       - ./:/usr/src/junit-tdd
     working_dir: /usr/src/junit-tdd
-    entrypoint: ./docker/java/entrypoint.sh
+    entrypoint: ./docker/java/scripts/entrypoint.sh

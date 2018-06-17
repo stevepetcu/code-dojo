@@ -1,7 +1,14 @@
 package main.java.codedojo.kata.junittdd.diamond;
 
+import java.util.Scanner;
+
 public class Diamond {
     public static void main(String[] args) {
-        System.out.println("  A\n B B\nC   C\n B B\n  A");
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.next();
+
+        scanner.close();
+
+        System.out.println(input);
     }
 }
