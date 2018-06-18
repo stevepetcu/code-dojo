@@ -1,4 +1,4 @@
-DOCKER_MACHINE_NAME := dk.java.junit-tdd
+DOCKER_MACHINE_NAME := dk.php.phpspec-tdd-baby-steps
 DOCKER_MACHINE_STATE := $(shell docker-machine ls --filter name=$(DOCKER_MACHINE_NAME) --format "{{.State}}")
 EVALUATED_DOCKER_MACHINE_NAME := ${DOCKER_MACHINE_NAME}
 
