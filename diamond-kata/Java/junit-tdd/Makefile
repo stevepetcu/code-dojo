@@ -3,7 +3,7 @@ DOCKER_MACHINE_STATE := $(shell docker-machine ls --filter name=$(DOCKER_MACHINE
 
 .PHONY: all, confirm, up, test, compile, run
 
-all: confirm up test compile run
+all: confirm up test run
 
 confirm:
 	@(read -p "Running this command may take a while. Are you sure? [y/N]: " sure && case "$$sure" in [yY]) true;; *) false;; esac)
