@@ -32,3 +32,4 @@ ifneq ($(EVALUATED_DOCKER_MACHINE_NAME),$(DOCKER_MACHINE_NAME))
 	$(warning Docker machine "$(DOCKER_MACHINE_NAME)" is not evaluated in the current terminal. Please run the following command:)
 	$(warning eval $$(docker-machine env $(DOCKER_MACHINE_NAME)))
 	$(error Couldn't connect to Docker daemon)
+endif
