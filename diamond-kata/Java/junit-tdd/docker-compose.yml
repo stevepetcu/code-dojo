@@ -9,6 +9,8 @@ services:
       - ./:/usr/src/junit-tdd
     working_dir: /usr/src/junit-tdd
     entrypoint: ./docker/java/scripts/entrypoint.sh
+    depends_on:
+      - maven
 
   maven:
     build:

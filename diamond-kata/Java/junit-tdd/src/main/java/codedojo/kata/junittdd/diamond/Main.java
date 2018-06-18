@@ -12,6 +12,8 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        System.out.print("Please enter a letter between A and Z: ");
+
         Scanner scanner = new Scanner(System.in);
         String input = scanner.next();
 

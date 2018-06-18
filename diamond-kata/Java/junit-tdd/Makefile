@@ -3,24 +3,24 @@ DOCKER_MACHINE_STATE := $(shell docker-machine ls --filter name=$(DOCKER_MACHINE
 EVALUATED_DOCKER_MACHINE_NAME := ${DOCKER_MACHINE_NAME}
 
 .DEFAULT_GOAL := run
-.PHONY: all, confirm, up, test, compile, run, check-env
+.PHONY: all, confirm, build-up, test, package, run, check-env
 
-all: confirm up test run
+all: confirm build-up package run
 
 confirm:
 	@(read -p "Running this command may take a while. Are you sure? [y/N]: " sure && case "$$sure" in [yY]) true;; *) false;; esac)
 
-up: check-env
-	docker-compose up -d
+build-up: check-env
+	docker-compose up --build -d
 
 test: check-env
 	docker-compose exec maven mvn clean test
 
-compile: check-env
-	docker-compose exec java ./docker/java/scripts/compile.sh
+package: check-env
+	docker-compose exec maven mvn clean package
 
 run: check-env
-	docker-compose exec java ./bin/console.sh
+	docker-compose exec java java -cp target/junit-tdd-1.0-SNAPSHOT.jar main.java.codedojo.kata.junittdd.diamond.Main
 
 check-env:
 ifneq ($(DOCKER_MACHINE_STATE),Running)
