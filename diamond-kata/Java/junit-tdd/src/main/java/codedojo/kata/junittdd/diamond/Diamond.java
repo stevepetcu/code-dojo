@@ -8,9 +8,39 @@
  */
 package main.java.codedojo.kata.junittdd.diamond;
 
+import java.util.List;
+
 public class Diamond {
+    private List<Character> alphabet;
+    private Character character;
+
+    public Diamond(List<Character> alphabet) {
+        this(alphabet, null);
+    }
+
+    public Diamond(List<Character> alphabet, Character character) {
+        if (alphabet.isEmpty()) {
+            throw new IllegalArgumentException("Non-empty character set is required.");
+        }
+
+        if (null == character) {
+            character = alphabet.get(alphabet.size() - 1);
+        }
+
+        this.alphabet = alphabet;
+        this.character = character;
+    }
+
     @Override
     public String toString() {
-        return " A\nB B\n A";
+        StringBuilder rendering = new StringBuilder();
+
+        for (Character character : alphabet) {
+            rendering.append(character);
+        }
+
+        rendering.append(" ").append(character);
+
+        return rendering.toString();
     }
 }
