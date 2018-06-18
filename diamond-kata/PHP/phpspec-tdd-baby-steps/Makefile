@@ -3,20 +3,20 @@ DOCKER_MACHINE_STATE := $(shell docker-machine ls --filter name=$(DOCKER_MACHINE
 EVALUATED_DOCKER_MACHINE_NAME := ${DOCKER_MACHINE_NAME}
 
 .DEFAULT_GOAL := run
-.PHONY: all, up, install, test, run, check_env
+.PHONY: all, up, install, test, run, check-env
 
 all: up install test run
 
-up: check_env
+up: check-env
 	docker-compose up -d
 
-install: check_env
+install: check-env
 	docker run --rm --interactive --tty --volume $(shell pwd):/app composer install
 
-test: check_env
+test: check-env
 	docker-compose exec php ./vendor/bin/phpspec run --verbose
 
-run: check_env
+run: check-env
 	docker-compose exec php ./bin/console
 
 check-env:
