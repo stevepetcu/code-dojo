@@ -4,7 +4,7 @@ Over-engineered version of the Diamond Kata. Trying out property-based testing.
 
 ## Setting up the environment for first run
 
-Setup the docker-machine:
+Setup the docker machine:
 ```bash
 docker-machine create dk.php.phpunit-property-based-testing && eval $(docker-machine env dk.php.phpunit-property-based-testing)
 ```
@@ -14,7 +14,7 @@ Install dependencies, run tests and run the application:
 make all
 ```
 
-**OBS**: If an "_ERROR: Couldn't connect to Docker daemon._" message is displayed at any time, make sure the docker-machine is evaluated in the current terminal:
+**Note**: If an `ERROR: Couldn't connect to Docker daemon.` message is displayed at any time, make sure the docker-machine is evaluated in the current terminal:
 ```bash
 eval $(docker-machine env dk.php.phpunit-property-based-testing)
 ```
