@@ -8,9 +8,15 @@
  */
 package main.java.codedojo.kata.junittdd.diamond;
 
-public class Diamond {
-    @Override
-    public String toString() {
-        return " A\nB B\n A";
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.next();
+
+        scanner.close();
+
+        System.out.println(input);
     }
 }
