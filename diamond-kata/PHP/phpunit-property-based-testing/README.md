@@ -19,7 +19,7 @@ make all
 eval $(docker-machine env dk.php.phpunit-property-based-testing)
 ```
 
-## Upping the application
+## Upping the docker containers
 
 Start the docker containers, but skip everything else:
 ```bash
@@ -42,7 +42,7 @@ Run the tests, but skip everything else:
 make test
 ```
 
-## Running the code
+## Running the application
 
 Run the application, but skip everything else:
 ```bash
