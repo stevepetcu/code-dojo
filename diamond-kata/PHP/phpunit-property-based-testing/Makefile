@@ -2,6 +2,7 @@ DOCKER_MACHINE_NAME := dk.php.phpunit-property-based-testing
 DOCKER_MACHINE_STATE := $(shell docker-machine ls --filter name=$(DOCKER_MACHINE_NAME) --format "{{.State}}")
 
 .PHONY: all, up, install, update, require, test, run, check_env
+.DEFAULT: run
 
 all: up install test run
 
