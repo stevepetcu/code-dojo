@@ -11,7 +11,7 @@ up: check_env
 install: check_env
 	docker run --rm --interactive --tty --volume $(shell pwd):/app composer install
 
-test:
+test: check_env
 	docker-compose exec php ./vendor/bin/phpspec run --verbose
 
 run: check_env
