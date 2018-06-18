@@ -2,6 +2,7 @@ DOCKER_MACHINE_NAME := dk.java.junit-tdd
 DOCKER_MACHINE_STATE := $(shell docker-machine ls --filter name=$(DOCKER_MACHINE_NAME) --format "{{.State}}")
 
 .PHONY: all, confirm, up, test, compile, run
+.DEFAULT: run
 
 all: confirm up test run
 
