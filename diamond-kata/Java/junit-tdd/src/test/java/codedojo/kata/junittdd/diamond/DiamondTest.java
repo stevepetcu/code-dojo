@@ -14,6 +14,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -23,32 +24,12 @@ import static org.junit.Assert.fail;
 
 public class DiamondTest {
     // TODO: Refactor method names.
-    private static final List<Character> ALPHABET = new ArrayList<Character>(10);
-
-    static {
-        ALPHABET.add('A');
-        ALPHABET.add('B');
-        ALPHABET.add('C');
-        ALPHABET.add('D');
-        ALPHABET.add('E');
-        ALPHABET.add('F');
-        ALPHABET.add('G');
-        ALPHABET.add('H');
-        ALPHABET.add('I');
-        ALPHABET.add('J');
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void will_ThrowException_DuringConstruction_GivenAlphabetIsEmpty() {
-        // GIVEN
-        List<Character> alphabet = new ArrayList<Character>();
-
-        // WHEN
-        Diamond diamond = new Diamond(alphabet);
-    }
+    // TODO: Mock alphabet (use Alphabet class) - research Mockito.
+    private static final List<Character> ALPHABET =
+            new ArrayList<Character>(Arrays.asList('A', 'B', 'C', 'D', 'E', 'F', 'G'));
 
     @Test
-    public void itCanBeBuilt_WithJustAListOfCharacters() {
+    public void initialisation_WillWork_GivenAnAlphabet() {
         // WHEN
         Diamond diamond = new Diamond(ALPHABET);
 
@@ -71,7 +52,7 @@ public class DiamondTest {
         Diamond diamond = new Diamond(ALPHABET);
 
         // THEN
-        assertThat("ABCDEFGHIJ J", equalTo(diamond.toString()));
+        assertThat("ABCDEFG G", equalTo(diamond.toString()));
     }
 
     @Test
@@ -80,7 +61,7 @@ public class DiamondTest {
         Diamond diamond = new Diamond(ALPHABET, 'E');
 
         // THEN
-        assertThat("ABCDEFGHIJ E", equalTo(diamond.toString()));
+        assertThat("ABCDEFG E", equalTo(diamond.toString()));
     }
 
     @Test

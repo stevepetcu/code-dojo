@@ -22,4 +22,8 @@ public class Alphabet {
 
         return index;
     }
+
+    public Character characterAt(int index) {
+        return characters.get(index);
+    }
 }

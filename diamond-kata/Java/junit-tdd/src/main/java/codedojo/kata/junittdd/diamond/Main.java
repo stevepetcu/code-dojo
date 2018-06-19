@@ -55,7 +55,7 @@ public class Main {
 
         Character inputCharacter = input.charAt(0);
 
-        Diamond diamond = new Diamond(ALPHABET, inputCharacter);
+        Diamond diamond = new Diamond(ALPHABET, Character.toUpperCase(inputCharacter));
 
         System.out.println(diamond);
     }

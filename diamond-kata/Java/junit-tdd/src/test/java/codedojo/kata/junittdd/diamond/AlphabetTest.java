@@ -40,7 +40,7 @@ public class AlphabetTest {
     }
 
     @Test
-    public void indexOf_WillReturnTheIndexOfARequestedCharacter_GivenTheCharacterIsInTheAlphabetList() {
+    public void indexOf_WillReturnTheIndexOfARequestedCharacter_GivenTheCharacterIsInTheAlphabet() {
         // GIVEN
         char requestedCharacter = 'F';
 
@@ -52,12 +52,35 @@ public class AlphabetTest {
     }
 
     @Test(expected = IllegalArgumentException.class) // TODO: Replace with a custom exception.
-    public void indexOf_WillThrowException_GivenTheCharacterIsNotInTheAlphabetList()
+    public void indexOf_WillThrowException_GivenTheCharacterIsNotInTheAlphabet()
     {
         // GIVEN
         char requestedCharacter = 'H';
 
         // WHEN
         alphabet.indexOf(requestedCharacter);
+    }
+
+    @Test
+    public void characterAt_WillReturnTheCharacterAtTheGivenIndex_GivenTheIndexIsInTheAlphabet()
+    {
+        // GIVEN
+        int index = 5;
+
+        // WHEN
+        char character = alphabet.characterAt(index);
+
+        // THEN
+        assertThat('F', CoreMatchers.equalTo(character));
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void characterAt_WillThrowIndexOutOfBoundException_GivenTheIndexIsNotInTheAlphabet()
+    {
+        // GIVEN
+        int index = -1;
+
+        // WHEN
+        char character = alphabet.characterAt(index);
     }
 }
