@@ -22,6 +22,7 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 
 public class DiamondTest {
+    // TODO: Refactor method names.
     private static final List<Character> ALPHABET = new ArrayList<Character>(10);
 
     static {

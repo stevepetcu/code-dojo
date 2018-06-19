@@ -25,13 +25,13 @@ public class AlphabetTest {
     }
 
     @Test
-    public void can_BeInitialised_WithAListOfCharacters() {
+    public void initialisation_WillWork_GivenANonEmptyCharacterList() {
         // THEN
         assertThat(alphabet, CoreMatchers.<Alphabet>instanceOf(Alphabet.class));
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void initialisation_WillThrowException_GivenCharacterSetIsEmpty() {
+    public void initialisation_WillThrowException_GivenAnEmptyCharacterList() {
         // GIVEN
         ArrayList<Character> emptyList = new ArrayList<Character>();
 
@@ -40,7 +40,7 @@ public class AlphabetTest {
     }
 
     @Test
-    public void indexOf_WillReturnTheIndexOfARequestedCharacter_GivenTheCharacterIsInTheList() {
+    public void indexOf_WillReturnTheIndexOfARequestedCharacter_GivenTheCharacterIsInTheAlphabetList() {
         // GIVEN
         char requestedCharacter = 'F';
 
@@ -52,7 +52,7 @@ public class AlphabetTest {
     }
 
     @Test(expected = IllegalArgumentException.class) // TODO: Replace with a custom exception.
-    public void indexOf_WillThrowException_GivenTheCharacterIsNotInTheList()
+    public void indexOf_WillThrowException_GivenTheCharacterIsNotInTheAlphabetList()
     {
         // GIVEN
         char requestedCharacter = 'H';
