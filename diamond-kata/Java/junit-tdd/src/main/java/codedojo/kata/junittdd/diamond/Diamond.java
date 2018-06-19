@@ -14,6 +14,7 @@ public class Diamond {
     private List<Character> alphabet;
     private Character character;
 
+    // TODO: refactor class (and tests) to take an Alphabet type, instead of a List of characters.
     public Diamond(List<Character> alphabet) {
         this(alphabet, null);
     }
