@@ -11,8 +11,7 @@ Make all the things:
 ```bash
 make all
 ```
-**Note**: The previous command will start the docker containers,
-compile and run the tests, and compile and run the application.
+**Note**: The previous command will start the docker containers, package and run the application.
 
 **Note**: If an `ERROR: Couldn't connect to Docker daemon.` message is
 displayed at any time, make sure the docker-machine is evaluated in the current terminal:
@@ -20,10 +19,10 @@ displayed at any time, make sure the docker-machine is evaluated in the current 
 eval $(docker-machine env dk.java.junit-tdd)
 ```
 
-## Upping the docker containers
-Start the docker containers, but skip everything else:
+## Building and upping the docker containers
+Build and up the docker containers, but skip everything else:
 ```bash
-make up
+make build-up
 ```
 
 ## Running the tests
@@ -32,8 +31,15 @@ Run the tests, but skip everything else:
 make test
 ```
 
+## Packaging the application
+Package the application, but skip everything else:
+```bash
+make package
+```
+
 ## Running the application
 Run the application, but skip everything else:
 ```bash
 make run
 ```
+**Note**: Don't forget to package the application if any changes were made!
