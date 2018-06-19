@@ -8,10 +8,12 @@
  */
 package test.java.codedojo.kata.junittdd.diamond;
 
+import main.java.codedojo.kata.junittdd.diamond.Alphabet;
 import main.java.codedojo.kata.junittdd.diamond.Diamond;
 import org.hamcrest.CoreMatchers;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.mockito.Mock;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,12 +23,16 @@ import static org.hamcrest.CoreMatchers.equalTo;
 
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
+import static org.mockito.Mockito.*;
 
 public class DiamondTest {
     // TODO: Refactor method names.
     // TODO: Mock alphabet (use Alphabet class) - research Mockito.
     private static final List<Character> ALPHABET =
             new ArrayList<Character>(Arrays.asList('A', 'B', 'C', 'D', 'E', 'F', 'G'));
+
+    @Mock
+    private Alphabet alphabet;
 
     @Test
     public void initialisation_WillWork_GivenAnAlphabet() {
