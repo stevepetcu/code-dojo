@@ -1,6 +1,13 @@
 # Test-driven development with the Diamond Kata
 **Property-based TDD with jUnit** version of the Diamond Kata.
 
+**Note**: Property-based testing is a testing procedure where we take a
+more functional approach to our tests. For example, if we were to
+property-based test addition of numbers, we'd take a look at testing its
+properties (commutativity, associativity, identity).
+This is in contrast with state-based testing, which would involve testing
+addition over a (potentially infinite) subset of numbers.
+
 ## Setting up the environment for first run
 Setup the docker machine:
 ```bash
