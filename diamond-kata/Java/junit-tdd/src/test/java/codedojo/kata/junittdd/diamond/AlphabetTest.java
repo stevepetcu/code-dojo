@@ -43,7 +43,7 @@ public class AlphabetTest {
         ArrayList<Character> emptyList = new ArrayList<Character>();
 
         // WHEN
-        Alphabet alphabet = new Alphabet(emptyList);
+        new Alphabet(emptyList);
     }
 
     @Test
@@ -85,7 +85,7 @@ public class AlphabetTest {
         int index = -1;
 
         // WHEN
-        char character = alphabet.characterAt(index);
+        alphabet.characterAt(index);
     }
 
     @Test

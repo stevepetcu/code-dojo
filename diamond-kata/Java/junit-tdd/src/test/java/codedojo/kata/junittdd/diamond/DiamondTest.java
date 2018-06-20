@@ -17,6 +17,10 @@ import org.junit.Test;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Random;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.*;
@@ -99,32 +103,56 @@ public class DiamondTest {
 
     @Test
     @Ignore
-    public void toString_WillOutputADiamondThatIsAsWideAsItIsHigh_GivenAnyTargetCharacterInItsAlphabet() {
-        // TODO: Implement method.
+    public void toString_WillOutputADiamondWithAnOddNumberOfRows_GivenAnyTargetCharacterInItsAlphabet() {
+        // GIVEN
+        Random randomNumberGenerator = new Random();
+        Character randomCharacter = alphabet.characterAt(randomNumberGenerator.nextInt(5));
+
+        // WHEN
+        Diamond diamond = new Diamond(alphabet, randomCharacter);
+        ArrayList<String> renderedRows = new ArrayList<String>();
+        Collections.addAll(renderedRows, diamond.toString().split("\n"));
+
+        // THEN
+        assertThat(1, equalTo(renderedRows.size() % 2));
     }
 
     @Test
     @Ignore
-    public void toString_WillOutputASymmetricDiamondOnBothAxes_GivenAnyTargetCharacterInItsAlphabet()
-    {
+    public void toString_WillOutputADiamondThatIsAsWideAsItIsHigh_GivenAnyTargetCharacterInItsAlphabet() {
+        // GIVEN
+        Diamond diamond = new Diamond(alphabet, 'C');
+
+        // WHEN
+        ArrayList<String> renderedRows = new ArrayList<String>();
+        Collections.addAll(renderedRows, diamond.toString().split("\n"));
+        String centerRow = renderedRows.get(renderedRows.size() / 2 + 1);
+
+        // THEN
+        assertThat(centerRow.length(), equalTo(renderedRows.size()));
+    }
+
+    @Test
+    @Ignore
+    public void toString_WillOutputASymmetricDiamondOnBothAxes_GivenAnyTargetCharacterInItsAlphabet() {
         // TODO: Implement method.
     }
 
     @Test
     public void toString_WillOutputAPalindromeOfAlphabeticCharactersUpToTheAlphabetLastCharacter_GivenATargetCharacterWasNotProvided() {
-        // WHEN
+        // GIVEN
         Diamond diamond = new Diamond(alphabet);
 
-        // THEN // TODO: Replace with property-based test that "middle row" character is the alphabet's last character.
+        // THEN // TODO: Replace with property-based test that "center row" character is the alphabet's last character.
         assertThat("FEDCBA F", equalTo(diamond.toString()));
     }
 
     @Test
     public void toString_WillOutputAPalindromeOfAlphabeticCharactersUpToTheTargetCharacter_GivenAnyTargetCharacterProvided() {
-        // WHEN
+        // GIVEN
         Diamond diamond = new Diamond(alphabet, 'C');
 
-        // THEN // TODO: Replace with property-based test that "middle row" character is the target character.
+        // THEN // TODO: Replace with property-based test that "center row" character is the target character.
         assertThat("CBA C", equalTo(diamond.toString()));
     }
 }
