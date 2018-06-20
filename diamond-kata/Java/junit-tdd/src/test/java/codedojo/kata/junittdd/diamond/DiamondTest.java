@@ -12,6 +12,7 @@ import main.java.codedojo.kata.junittdd.diamond.Alphabet;
 import main.java.codedojo.kata.junittdd.diamond.Diamond;
 import org.hamcrest.CoreMatchers;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
@@ -103,7 +104,7 @@ public class DiamondTest {
         // WHEN
         Diamond diamond = new Diamond(alphabet);
 
-        // THEN
+        // THEN // TODO: Replace with property-based test that "middle row" character is the alphabet's last character.
         assertThat("FEDCBA F", equalTo(diamond.toString()));
     }
 
@@ -112,7 +113,26 @@ public class DiamondTest {
         // WHEN
         Diamond diamond = new Diamond(alphabet, 'C');
 
-        // THEN
+        // THEN // TODO: Replace with property-based test that "middle row" character is the target character.
         assertThat("CBA C", equalTo(diamond.toString()));
+    }
+
+    @Test
+    @Ignore
+    public void toString_WillOutputADiamondStartingAndEndingWithTheFirstLetterOfTheAlphabet_GivenAnyTargetCharacterInItsAlphabet() {
+        // TODO: Implement method.
+    }
+
+    @Test
+    @Ignore
+    public void toString_WillOutputADiamondThatIsAsWideAsItIsHeigh_GivenAnyTargetCharacterInItsAlphabet() {
+        // TODO: Implement method.
+    }
+
+    @Test
+    @Ignore
+    public void toString_WillOutputASymmetricDiamondOnBothAxes_GivenAnyTargetCharacterInItsAlphabet()
+    {
+        // TODO: Implement method.
     }
 }

@@ -1,5 +1,5 @@
 # Test-driven development with the Diamond Kata
-TDD with jUnit version of the Diamond Kata.
+**Property-based TDD with jUnit** version of the Diamond Kata.
 
 ## Setting up the environment for first run
 Setup the docker machine:
