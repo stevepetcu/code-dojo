@@ -1,6 +1,8 @@
 # Property Based Testing with the Diamond Kata
 
-Over-engineered version of the Diamond Kata. Trying out property-based testing.
+**Property-based testing with PHPUnit** version of the Diamond Kata.
+
+**Note**: Property-based testing (contrasted with state-based testing) is a testing procedure where we take a more functional approach to our tests. For example, if we were to property-based test addition of numbers, we'd take a look at testing its properties (commutativity, associativity, identity), as opposed to testing a (potentially infinite) subset of number additions.
 
 ## Setting up the environment for first run
 
