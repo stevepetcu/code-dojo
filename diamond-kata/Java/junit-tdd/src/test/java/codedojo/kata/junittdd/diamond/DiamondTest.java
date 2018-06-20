@@ -11,68 +11,108 @@ package test.java.codedojo.kata.junittdd.diamond;
 import main.java.codedojo.kata.junittdd.diamond.Alphabet;
 import main.java.codedojo.kata.junittdd.diamond.Diamond;
 import org.hamcrest.CoreMatchers;
-import org.junit.Ignore;
+import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mock;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import org.mockito.invocation.InvocationOnMock;
+import org.mockito.stubbing.Answer;
 
 import static org.hamcrest.CoreMatchers.equalTo;
-
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.fail;
 import static org.mockito.Mockito.*;
 
 public class DiamondTest {
     // TODO: Refactor method names.
-    // TODO: Mock alphabet (use Alphabet class) - research Mockito.
-    private static final List<Character> ALPHABET =
-            new ArrayList<Character>(Arrays.asList('A', 'B', 'C', 'D', 'E', 'F', 'G'));
 
-    @Mock
     private Alphabet alphabet;
 
+    @Before
+    public void setUp() {
+        alphabet = mock(Alphabet.class);
+
+        when(alphabet.characterAt(anyInt())).thenAnswer(new Answer<Character>() {
+            @Override
+            public Character answer(InvocationOnMock invocationOnMock) throws IllegalArgumentException {
+                int index = invocationOnMock.getArgument(0);
+
+                switch (index) {
+                    case 0:
+                        return 'A';
+                    case 1:
+                        return 'B';
+                    case 2:
+                        return 'C';
+                    case 3:
+                        return 'D';
+                    case 4:
+                        return 'E';
+                    case 5:
+                        return 'F';
+                    default:
+                        throw new IllegalArgumentException("Requested character is not in the alphabet.");
+                }
+            }
+        });
+
+        when(alphabet.indexOf(anyChar())).thenAnswer(new Answer<Integer>() {
+            @Override
+            public Integer answer(InvocationOnMock invocationOnMock) throws IllegalArgumentException {
+                char character = invocationOnMock.getArgument(0);
+
+                switch (character) {
+                    case 'A':
+                        return 0;
+                    case 'B':
+                        return 1;
+                    case 'C':
+                        return 2;
+                    case 'D':
+                        return 3;
+                    case 'E':
+                        return 4;
+                    case 'F':
+                        return 5;
+                    default:
+                        throw new IllegalArgumentException("Non-empty character list required.");
+                }
+            }
+        });
+
+        when(alphabet.lastCharacter()).thenReturn('F');
+    }
+
     @Test
-    public void initialisation_WillWork_GivenAnAlphabet() {
+    public void initialisation_WillWork_GivenOnlyAnAlphabet() {
         // WHEN
-        Diamond diamond = new Diamond(ALPHABET);
+        Diamond diamond = new Diamond(alphabet);
 
         // THEN
         assertThat(diamond, CoreMatchers.<Diamond>instanceOf(Diamond.class));
     }
 
     @Test
-    public void itCanBeBuilt_WithAListOfCharactersAndTheTargetCharacter() {
+    public void initialisation_WillWork_GivenAnAlphabetAndACharacter() {
         // WHEN
-        Diamond diamond = new Diamond(ALPHABET, 'C');
+        Diamond diamond = new Diamond(alphabet, 'C');
 
         // THEN
         assertThat(diamond, CoreMatchers.<Diamond>instanceOf(Diamond.class));
     }
 
     @Test
-    public void itWillOutputItsAlphabetAndLastAlphabetCharacter_GivenTargetCharacterNotProvided() {
+    public void toString_WillOutputADiamondUpToTheLastAlphabeticalCharacter_GivenATargetCharacterNotProvided() {
         // WHEN
-        Diamond diamond = new Diamond(ALPHABET);
+        Diamond diamond = new Diamond(alphabet);
 
         // THEN
-        assertThat("ABCDEFG G", equalTo(diamond.toString()));
+        assertThat("FEDCBA F", equalTo(diamond.toString()));
     }
 
     @Test
-    public void itWillOutputItsAlphabetAndTargetCharacter_GivenTargetCharacterProvided() {
+    public void toString_WillOutputADiamondUpToTheTargetCharacter_GivenATargetCharacterProvided() {
         // WHEN
-        Diamond diamond = new Diamond(ALPHABET, 'E');
+        Diamond diamond = new Diamond(alphabet, 'C');
 
         // THEN
-        assertThat("ABCDEFG E", equalTo(diamond.toString()));
-    }
-
-    @Test
-    @Ignore
-    public void itWillOutputASymmetricDiamond_BasedOnTheAlphabetAndItsLastCharacter_WhenTargetCharacterNotProvided() {
-        fail();
+        assertThat("CBA C", equalTo(diamond.toString()));
     }
 }

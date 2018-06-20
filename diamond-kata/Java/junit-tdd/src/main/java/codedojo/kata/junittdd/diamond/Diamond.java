@@ -8,36 +8,28 @@
  */
 package main.java.codedojo.kata.junittdd.diamond;
 
-import java.util.List;
-
 public class Diamond {
-    private List<Character> alphabet;
+    private Alphabet alphabet;
     private Character character;
 
-    // TODO: refactor class (and tests) to take an Alphabet type, instead of a List of characters.
-    public Diamond(List<Character> alphabet) {
+    public Diamond(Alphabet alphabet) {
         this(alphabet, null);
     }
 
-    public Diamond(List<Character> alphabet, Character character) {
-        if (alphabet.isEmpty()) {
-            throw new IllegalArgumentException("Non-empty character set is required.");
-        }
-
-        if (null == character) {
-            character = alphabet.get(alphabet.size() - 1);
-        }
-
+    public Diamond(Alphabet alphabet, Character character) {
         this.alphabet = alphabet;
-        this.character = character;
+        this.character = null == character ? alphabet.lastCharacter() : character;
     }
 
     @Override
     public String toString() {
         StringBuilder rendering = new StringBuilder();
 
-        for (Character character : alphabet) {
-            rendering.append(character);
+        int index = alphabet.indexOf(character);
+
+        while (index >= 0) {
+            rendering.append(alphabet.characterAt(index));
+            --index;
         }
 
         rendering.append(" ").append(character);

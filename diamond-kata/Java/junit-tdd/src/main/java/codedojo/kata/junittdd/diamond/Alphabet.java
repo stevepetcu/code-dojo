@@ -1,3 +1,11 @@
+/*
+ * This file is part of the DiamondKata application.
+ *
+ * © Stefan Petcu <hello@stefanpetcu.com>
+ *
+ * For the full copyright and license information, please view
+ * the LICENSE file that was distributed with this source code.
+ */
 package main.java.codedojo.kata.junittdd.diamond;
 
 import java.util.List;
@@ -25,5 +33,9 @@ public class Alphabet {
 
     public Character characterAt(int index) {
         return characters.get(index);
+    }
+
+    public Character lastCharacter() {
+        return characters.get(characters.size() - 1);
     }
 }

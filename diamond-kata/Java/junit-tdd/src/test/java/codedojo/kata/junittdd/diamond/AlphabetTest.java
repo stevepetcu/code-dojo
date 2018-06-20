@@ -1,3 +1,11 @@
+/*
+ * This file is part of the DiamondKata application.
+ *
+ * © Stefan Petcu <hello@stefanpetcu.com>
+ *
+ * For the full copyright and license information, please view
+ * the LICENSE file that was distributed with this source code.
+ */
 package test.java.codedojo.kata.junittdd.diamond;
 
 import main.java.codedojo.kata.junittdd.diamond.Alphabet;
@@ -18,8 +26,7 @@ public class AlphabetTest {
     private Alphabet alphabet;
 
     @Before
-    public void setUp()
-    {
+    public void setUp() {
         // GIVEN
         alphabet = new Alphabet(CHARACTERS);
     }
@@ -52,8 +59,7 @@ public class AlphabetTest {
     }
 
     @Test(expected = IllegalArgumentException.class) // TODO: Replace with a custom exception.
-    public void indexOf_WillThrowException_GivenTheCharacterIsNotInTheAlphabet()
-    {
+    public void indexOf_WillThrowException_GivenTheCharacterIsNotInTheAlphabet() {
         // GIVEN
         char requestedCharacter = 'H';
 
@@ -62,8 +68,7 @@ public class AlphabetTest {
     }
 
     @Test
-    public void characterAt_WillReturnTheCharacterAtTheGivenIndex_GivenTheIndexIsInTheAlphabet()
-    {
+    public void characterAt_WillReturnTheCharacterAtTheGivenIndex_GivenTheIndexIsInTheAlphabet() {
         // GIVEN
         int index = 5;
 
@@ -75,12 +80,20 @@ public class AlphabetTest {
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
-    public void characterAt_WillThrowIndexOutOfBoundException_GivenTheIndexIsNotInTheAlphabet()
-    {
+    public void characterAt_WillThrowIndexOutOfBoundException_GivenTheIndexIsNotInTheAlphabet() {
         // GIVEN
         int index = -1;
 
         // WHEN
         char character = alphabet.characterAt(index);
+    }
+
+    @Test
+    public void lastCharacter_WillReturnTheLastCharacterOfTheAlphabet() {
+        // WHEN
+        Character character = alphabet.lastCharacter();
+
+        // THEN
+        assertThat('G', CoreMatchers.equalTo(character));
     }
 }

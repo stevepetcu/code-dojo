@@ -51,11 +51,13 @@ public class Main {
 
         scanner.close();
 
-        // Do some validation...
+        // TODO: Add some validation...
 
         Character inputCharacter = input.charAt(0);
 
-        Diamond diamond = new Diamond(ALPHABET, Character.toUpperCase(inputCharacter));
+        Alphabet alphabet = new Alphabet(ALPHABET);
+
+        Diamond diamond = new Diamond(alphabet, Character.toUpperCase(inputCharacter));
 
         System.out.println(diamond);
     }
