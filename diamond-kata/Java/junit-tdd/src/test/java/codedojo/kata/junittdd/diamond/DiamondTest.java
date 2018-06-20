@@ -22,8 +22,6 @@ import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.*;
 
 public class DiamondTest {
-    // TODO: Refactor method names.
-
     private Alphabet alphabet;
 
     @Before
