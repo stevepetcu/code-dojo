@@ -100,32 +100,8 @@ public class DiamondTest {
     }
 
     @Test
-    public void toString_WillOutputADiamondUpToTheLastAlphabeticalCharacter_GivenATargetCharacterNotProvided() {
-        // WHEN
-        Diamond diamond = new Diamond(alphabet);
-
-        // THEN // TODO: Replace with property-based test that "middle row" character is the alphabet's last character.
-        assertThat("FEDCBA F", equalTo(diamond.toString()));
-    }
-
-    @Test
-    public void toString_WillOutputADiamondUpToTheTargetCharacter_GivenATargetCharacterProvided() {
-        // WHEN
-        Diamond diamond = new Diamond(alphabet, 'C');
-
-        // THEN // TODO: Replace with property-based test that "middle row" character is the target character.
-        assertThat("CBA C", equalTo(diamond.toString()));
-    }
-
-    @Test
     @Ignore
-    public void toString_WillOutputADiamondStartingAndEndingWithTheFirstLetterOfTheAlphabet_GivenAnyTargetCharacterInItsAlphabet() {
-        // TODO: Implement method.
-    }
-
-    @Test
-    @Ignore
-    public void toString_WillOutputADiamondThatIsAsWideAsItIsHeigh_GivenAnyTargetCharacterInItsAlphabet() {
+    public void toString_WillOutputADiamondThatIsAsWideAsItIsHigh_GivenAnyTargetCharacterInItsAlphabet() {
         // TODO: Implement method.
     }
 
@@ -134,5 +110,23 @@ public class DiamondTest {
     public void toString_WillOutputASymmetricDiamondOnBothAxes_GivenAnyTargetCharacterInItsAlphabet()
     {
         // TODO: Implement method.
+    }
+
+    @Test
+    public void toString_WillOutputAPalindromeOfAlphabeticCharactersUpToTheAlphabetLastCharacter_GivenATargetCharacterWasNotProvided() {
+        // WHEN
+        Diamond diamond = new Diamond(alphabet);
+
+        // THEN // TODO: Replace with property-based test that "middle row" character is the alphabet's last character.
+        assertThat("FEDCBA F", equalTo(diamond.toString()));
+    }
+
+    @Test
+    public void toString_WillOutputAPalindromeOfAlphabeticCharactersUpToTheTargetCharacter_GivenAnyTargetCharacterProvided() {
+        // WHEN
+        Diamond diamond = new Diamond(alphabet, 'C');
+
+        // THEN // TODO: Replace with property-based test that "middle row" character is the target character.
+        assertThat("CBA C", equalTo(diamond.toString()));
     }
 }
