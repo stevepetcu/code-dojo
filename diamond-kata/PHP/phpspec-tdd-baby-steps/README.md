@@ -1,6 +1,8 @@
 # Test-driven development with the Diamond Kata
 
-TDD with PHPSpec version of the Diamond Kata.
+**Baby-steps, TDD with PHPSpec** version of the Diamond Kata.
+
+**Note**: Baby-steps is a game where we commit code that's gone through a Red-Green(-Refactor) cycle (and is thus in a working state) every 10 minutes. Uncommited code should be deleted and work resumed from last working-state version every 10 minutes.
 
 ## Setting up the environment for first run
 
