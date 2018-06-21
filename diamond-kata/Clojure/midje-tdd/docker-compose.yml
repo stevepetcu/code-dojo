@@ -1,0 +1,10 @@
+version: "3"
+
+services:
+  clojure:
+    build:
+      context: ./docker/clojure
+    volumes:
+      - ./:/usr/src/midje-tdd
+    working_dir: /usr/src/midje-tdd
+    entrypoint: ./docker/clojure/scripts/entrypoint.sh
