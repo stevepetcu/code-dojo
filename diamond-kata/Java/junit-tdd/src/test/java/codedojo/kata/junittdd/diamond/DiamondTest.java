@@ -164,32 +164,11 @@ public class DiamondTest {
         // WHEN
         ArrayList<String> renderedRows = new ArrayList<String>();
         Collections.addAll(renderedRows, diamond.toString().split("\n"));
-
-        ArrayList<ArrayList<String>> splitRows = new ArrayList<ArrayList<String>>();
-
-        for (String renderedRow : renderedRows) {
-            ArrayList<String> splitRow = new ArrayList<String>();
-            System.out.println(renderedRow);
-            Collections.addAll(splitRow, renderedRow.split(""));
-            splitRows.add(splitRow);
-        }
-
-        ArrayList<ArrayList<String>> transposedDiamond = new ArrayList<ArrayList<String>>();
-
-        for (int row = 0; row < splitRows.size(); ++row) {
-            ArrayList<String> transposedDiamondCol = new ArrayList<String>();
-            for (int col = 0; col < splitRows.get(row).size(); ++col) {
-                if (splitRows.get(col).size() > row && !splitRows.get(col).get(row).matches("\\s+")) {
-                    transposedDiamondCol.add(splitRows.get(col).get(row));
-                }
-            }
-
-            transposedDiamond.add(transposedDiamondCol);
-        }
+        ArrayList<ArrayList<String>> transposedDiamondRendering = transposeDiamondRendering(renderedRows);
 
         int previousRowIndex, nextRowIndex;
 
-        previousRowIndex = nextRowIndex = transposedDiamond.size() / 2;
+        previousRowIndex = nextRowIndex = transposedDiamondRendering.size() / 2;
 
         // THEN
         do {
@@ -201,7 +180,7 @@ public class DiamondTest {
     }
 
     @Test
-    public void toString_WillOutputAPyramidOfAlphabeticCharactersUpToTheAlphabetLastCharacter_GivenATargetCharacterWasNotProvided() {
+    public void toString_WillOutputAPyramidOfCharactersUpToTheAlphabetLastCharacter_GivenATargetCharacterWasNotProvided() {
         // GIVEN
         Diamond diamond = new Diamond(alphabet);
 
@@ -216,7 +195,7 @@ public class DiamondTest {
     }
 
     @Test
-    public void toString_WillOutputAPyramidOfAlphabeticCharactersUpToTheTargetCharacter_GivenAnyTargetCharacterProvided() {
+    public void toString_WillOutputAPyramidOfCharactersInOrderUpToTheTargetCharacter_GivenAnyTargetCharacterProvided() {
         // GIVEN
         Random randomNumberGenerator = new Random();
         Character randomCharacter = alphabet.characterAt(randomNumberGenerator.nextInt(5));
@@ -233,5 +212,30 @@ public class DiamondTest {
             assertTrue(renderedRows.get(index).matches("^(\\s*" + expectedCharacter + "){1,2}$"));
             ++index;
         }
+    }
+
+    private ArrayList<ArrayList<String>> transposeDiamondRendering(ArrayList<String> renderedRows) {
+        ArrayList<ArrayList<String>> splitRows = new ArrayList<ArrayList<String>>();
+
+        for (String renderedRow : renderedRows) {
+            ArrayList<String> splitRow = new ArrayList<String>();
+            Collections.addAll(splitRow, renderedRow.split(""));
+            splitRows.add(splitRow);
+        }
+
+        ArrayList<ArrayList<String>> transposedDiamond = new ArrayList<ArrayList<String>>();
+
+        for (int row = 0; row < splitRows.size(); ++row) {
+            ArrayList<String> transposedDiamondColumn = new ArrayList<String>();
+            for (int column = 0; column < splitRows.get(row).size(); ++column) {
+                if (splitRows.get(column).size() > row && !splitRows.get(column).get(row).matches("\\s+")) {
+                    transposedDiamondColumn.add(splitRows.get(column).get(row));
+                }
+            }
+
+            transposedDiamond.add(transposedDiamondColumn);
+        }
+
+        return transposedDiamond;
     }
 }

@@ -31,17 +31,7 @@ public class Diamond {
         verticalPosition = 0;
 
         while (verticalPosition <= characterIndex) {
-            horizontalPosition = 0;
-
-            while (horizontalPosition <= lastCharacterPosition) {
-                if (horizontalPosition == firstCharacterPosition || horizontalPosition == lastCharacterPosition) {
-                    rendering.append(alphabet.characterAt(verticalPosition));
-                } else {
-                    rendering.append(" ");
-                }
-
-                ++horizontalPosition;
-            }
+            renderRow(rendering, verticalPosition, firstCharacterPosition, lastCharacterPosition);
 
             if (verticalPosition == characterIndex) {
                 break;
@@ -55,25 +45,33 @@ public class Diamond {
         }
 
         while (verticalPosition > 0) {
-            horizontalPosition = 0;
-
             rendering.append("\n");
 
             ++firstCharacterPosition;
             --lastCharacterPosition;
             --verticalPosition;
 
-            while (horizontalPosition <= lastCharacterPosition) {
-                if (horizontalPosition == firstCharacterPosition || horizontalPosition == lastCharacterPosition) {
-                    rendering.append(alphabet.characterAt(verticalPosition));
-                } else {
-                    rendering.append(" ");
-                }
-
-                ++horizontalPosition;
-            }
+            renderRow(rendering, verticalPosition, firstCharacterPosition, lastCharacterPosition);
         }
 
         return rendering.toString();
+    }
+
+    private void renderRow(
+            StringBuilder rendering,
+            int verticalPosition,
+            int firstCharacterPosition,
+            int lastCharacterPosition
+    ) {
+        int horizontalPosition = 0;
+        while (horizontalPosition <= lastCharacterPosition) {
+            if (horizontalPosition == firstCharacterPosition || horizontalPosition == lastCharacterPosition) {
+                rendering.append(alphabet.characterAt(verticalPosition));
+            } else {
+                rendering.append(" ");
+            }
+
+            ++horizontalPosition;
+        }
     }
 }
