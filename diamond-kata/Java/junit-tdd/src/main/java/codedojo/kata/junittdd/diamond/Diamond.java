@@ -25,14 +25,54 @@ public class Diamond {
     public String toString() {
         StringBuilder rendering = new StringBuilder();
 
-        int index = alphabet.indexOf(character);
+        int characterIndex, firstCharacterPosition, lastCharacterPosition, verticalPosition, horizontalPosition;
 
-        while (index >= 0) {
-            rendering.append(alphabet.characterAt(index));
-            --index;
+        characterIndex = firstCharacterPosition = lastCharacterPosition = alphabet.indexOf(character);
+        verticalPosition = 0;
+
+        while (verticalPosition <= characterIndex) {
+            horizontalPosition = 0;
+
+            while (horizontalPosition <= lastCharacterPosition) {
+                if (horizontalPosition == firstCharacterPosition || horizontalPosition == lastCharacterPosition) {
+                    rendering.append(alphabet.characterAt(verticalPosition));
+                } else {
+                    rendering.append(" ");
+                }
+
+                ++horizontalPosition;
+            }
+
+            if (verticalPosition == characterIndex) {
+                break;
+            }
+
+            --firstCharacterPosition;
+            ++lastCharacterPosition;
+            ++verticalPosition;
+
+            rendering.append("\n");
         }
 
-        rendering.append(" ").append(character);
+        while (verticalPosition > 0) {
+            horizontalPosition = 0;
+
+            rendering.append("\n");
+
+            ++firstCharacterPosition;
+            --lastCharacterPosition;
+            --verticalPosition;
+
+            while (horizontalPosition <= lastCharacterPosition) {
+                if (horizontalPosition == firstCharacterPosition || horizontalPosition == lastCharacterPosition) {
+                    rendering.append(alphabet.characterAt(verticalPosition));
+                } else {
+                    rendering.append(" ");
+                }
+
+                ++horizontalPosition;
+            }
+        }
 
         return rendering.toString();
     }

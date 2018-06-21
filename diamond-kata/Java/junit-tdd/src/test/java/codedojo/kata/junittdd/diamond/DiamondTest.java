@@ -12,7 +12,6 @@ import main.java.codedojo.kata.junittdd.diamond.Alphabet;
 import main.java.codedojo.kata.junittdd.diamond.Diamond;
 import org.hamcrest.CoreMatchers;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
@@ -23,6 +22,7 @@ import java.util.Random;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
 
 public class DiamondTest {
@@ -102,57 +102,136 @@ public class DiamondTest {
     }
 
     @Test
-    @Ignore
     public void toString_WillOutputADiamondWithAnOddNumberOfRows_GivenAnyTargetCharacterInItsAlphabet() {
         // GIVEN
         Random randomNumberGenerator = new Random();
         Character randomCharacter = alphabet.characterAt(randomNumberGenerator.nextInt(5));
+        Diamond diamond = new Diamond(alphabet, randomCharacter);
 
         // WHEN
-        Diamond diamond = new Diamond(alphabet, randomCharacter);
         ArrayList<String> renderedRows = new ArrayList<String>();
         Collections.addAll(renderedRows, diamond.toString().split("\n"));
 
         // THEN
-        assertThat(1, equalTo(renderedRows.size() % 2));
+        assertThat(renderedRows.size() % 2, equalTo(1));
     }
 
     @Test
-    @Ignore
     public void toString_WillOutputADiamondThatIsAsWideAsItIsHigh_GivenAnyTargetCharacterInItsAlphabet() {
         // GIVEN
-        Diamond diamond = new Diamond(alphabet, 'C');
+        Random randomNumberGenerator = new Random();
+        Character randomCharacter = alphabet.characterAt(randomNumberGenerator.nextInt(5));
+        Diamond diamond = new Diamond(alphabet, randomCharacter);
 
         // WHEN
         ArrayList<String> renderedRows = new ArrayList<String>();
         Collections.addAll(renderedRows, diamond.toString().split("\n"));
-        String centerRow = renderedRows.get(renderedRows.size() / 2 + 1);
+        String centerRow = renderedRows.get(renderedRows.size() / 2);
 
         // THEN
         assertThat(centerRow.length(), equalTo(renderedRows.size()));
     }
 
     @Test
-    @Ignore
-    public void toString_WillOutputASymmetricDiamondOnBothAxes_GivenAnyTargetCharacterInItsAlphabet() {
-        // TODO: Implement method.
+    public void toString_WillOutputAHorizontallySymmetricDiamond_GivenAnyTargetCharacterInItsAlphabet() {
+        // GIVEN
+        Random randomNumberGenerator = new Random();
+        Character randomCharacter = alphabet.characterAt(randomNumberGenerator.nextInt(5));
+        Diamond diamond = new Diamond(alphabet, randomCharacter);
+
+        // WHEN
+        ArrayList<String> renderedRows = new ArrayList<String>();
+        Collections.addAll(renderedRows, diamond.toString().split("\n"));
+        int previousRowIndex, nextRowIndex;
+        previousRowIndex = nextRowIndex = renderedRows.size() / 2;
+
+        // THEN
+        do {
+            assertThat(renderedRows.get(previousRowIndex), equalTo(renderedRows.get(nextRowIndex)));
+
+            --previousRowIndex;
+            ++nextRowIndex;
+        } while (previousRowIndex > 0);
     }
 
     @Test
-    public void toString_WillOutputAPalindromeOfAlphabeticCharactersUpToTheAlphabetLastCharacter_GivenATargetCharacterWasNotProvided() {
+    public void toString_WillOutputAVerticallySymmetricDiamond_GivenAnyTargetCharacterInItsAlphabet() {
+        // GIVEN
+        Random randomNumberGenerator = new Random();
+        Character randomCharacter = alphabet.characterAt(randomNumberGenerator.nextInt(5));
+        Diamond diamond = new Diamond(alphabet, randomCharacter);
+
+        // WHEN
+        ArrayList<String> renderedRows = new ArrayList<String>();
+        Collections.addAll(renderedRows, diamond.toString().split("\n"));
+
+        ArrayList<ArrayList<String>> splitRows = new ArrayList<ArrayList<String>>();
+
+        for (String renderedRow : renderedRows) {
+            ArrayList<String> splitRow = new ArrayList<String>();
+            System.out.println(renderedRow);
+            Collections.addAll(splitRow, renderedRow.split(""));
+            splitRows.add(splitRow);
+        }
+
+        ArrayList<ArrayList<String>> transposedDiamond = new ArrayList<ArrayList<String>>();
+
+        for (int row = 0; row < splitRows.size(); ++row) {
+            ArrayList<String> transposedDiamondCol = new ArrayList<String>();
+            for (int col = 0; col < splitRows.get(row).size(); ++col) {
+                if (splitRows.get(col).size() > row && !splitRows.get(col).get(row).matches("\\s+")) {
+                    transposedDiamondCol.add(splitRows.get(col).get(row));
+                }
+            }
+
+            transposedDiamond.add(transposedDiamondCol);
+        }
+
+        int previousRowIndex, nextRowIndex;
+
+        previousRowIndex = nextRowIndex = transposedDiamond.size() / 2;
+
+        // THEN
+        do {
+            assertThat(renderedRows.get(previousRowIndex), equalTo(renderedRows.get(nextRowIndex)));
+
+            --previousRowIndex;
+            ++nextRowIndex;
+        } while (previousRowIndex > 0);
+    }
+
+    @Test
+    public void toString_WillOutputAPyramidOfAlphabeticCharactersUpToTheAlphabetLastCharacter_GivenATargetCharacterWasNotProvided() {
         // GIVEN
         Diamond diamond = new Diamond(alphabet);
 
-        // THEN // TODO: Replace with property-based test that "center row" character is the alphabet's last character.
-        assertThat("FEDCBA F", equalTo(diamond.toString()));
+        // WHEN
+        ArrayList<String> renderedRows = new ArrayList<String>();
+        Collections.addAll(renderedRows, diamond.toString().split("\n"));
+        String centerRow = renderedRows.get(renderedRows.size() / 2);
+
+        // THEN
+        assertThat(centerRow, equalTo("F         F"));
+
     }
 
     @Test
-    public void toString_WillOutputAPalindromeOfAlphabeticCharactersUpToTheTargetCharacter_GivenAnyTargetCharacterProvided() {
+    public void toString_WillOutputAPyramidOfAlphabeticCharactersUpToTheTargetCharacter_GivenAnyTargetCharacterProvided() {
         // GIVEN
-        Diamond diamond = new Diamond(alphabet, 'C');
+        Random randomNumberGenerator = new Random();
+        Character randomCharacter = alphabet.characterAt(randomNumberGenerator.nextInt(5));
+        Diamond diamond = new Diamond(alphabet, randomCharacter);
 
-        // THEN // TODO: Replace with property-based test that "center row" character is the target character.
-        assertThat("CBA C", equalTo(diamond.toString()));
+        // WHEN
+        ArrayList<String> renderedRows = new ArrayList<String>();
+        Collections.addAll(renderedRows, diamond.toString().split("\n"));
+
+        // THEN
+        int index = 0;
+        while (index <= renderedRows.size() / 2) {
+            char expectedCharacter = alphabet.characterAt(index);
+            assertTrue(renderedRows.get(index).matches("^(\\s*" + expectedCharacter + "){1,2}$"));
+            ++index;
+        }
     }
 }
