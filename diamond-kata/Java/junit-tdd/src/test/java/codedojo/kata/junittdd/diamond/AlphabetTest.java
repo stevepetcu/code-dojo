@@ -55,7 +55,7 @@ public class AlphabetTest {
         int index = alphabet.indexOf(requestedCharacter);
 
         // THEN
-        assertThat(5, CoreMatchers.equalTo(index));
+        assertThat(index, CoreMatchers.equalTo(5));
     }
 
     @Test(expected = IllegalArgumentException.class) // TODO: Replace with a custom exception.
@@ -76,7 +76,7 @@ public class AlphabetTest {
         char character = alphabet.characterAt(index);
 
         // THEN
-        assertThat('F', CoreMatchers.equalTo(character));
+        assertThat(character, CoreMatchers.equalTo('F'));
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
@@ -94,6 +94,6 @@ public class AlphabetTest {
         Character character = alphabet.lastCharacter();
 
         // THEN
-        assertThat('G', CoreMatchers.equalTo(character));
+        assertThat(character, CoreMatchers.equalTo('G'));
     }
 }
