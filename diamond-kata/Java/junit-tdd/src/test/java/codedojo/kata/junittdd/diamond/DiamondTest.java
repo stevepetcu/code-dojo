@@ -191,7 +191,6 @@ public class DiamondTest {
 
         // THEN
         assertThat(centerRow, equalTo("F         F"));
-
     }
 
     @Test
