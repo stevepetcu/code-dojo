@@ -11,6 +11,12 @@ docker-machine create dk.clojure.midje-tdd && eval $(docker-machine env dk.cloju
 
 ## Running the tests
 
+### Get the test commands
+```bash
+make help-test
+```
+
+
 ### Run all the tests:
 ```bash
 make test
