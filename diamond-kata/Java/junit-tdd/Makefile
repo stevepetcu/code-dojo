@@ -3,7 +3,7 @@ DOCKER_MACHINE_STATE := $(shell docker-machine ls --filter name=$(DOCKER_MACHINE
 EVALUATED_DOCKER_MACHINE_NAME := ${DOCKER_MACHINE_NAME}
 
 .DEFAULT_GOAL := run
-.PHONY: all, confirm, build-up, test, package, run, check-env
+.PHONY: all confirm build-up test package run check-env
 
 all: confirm build-up package run
 
