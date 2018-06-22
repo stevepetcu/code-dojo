@@ -3,5 +3,8 @@
             [midje_tdd.diamond :refer :all]))
 
 (facts "about `build`"
-       (fact "it can return an element"
-             (build ['A']) => 'A'))
+       (fact "it can return a character"
+             (build 'A) => 'A)
+       (fact "it won't accept more than an input character"
+             ;; The following test not pass. TODO: implement input validation.
+             (build 'AB) => 'AB))
