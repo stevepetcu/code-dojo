@@ -31,7 +31,7 @@ public class Alphabet {
         return index;
     }
 
-    public Character characterAt(int index) {
+    public Character characterAt(int index) throws IndexOutOfBoundsException {
         return characters.get(index);
     }
 

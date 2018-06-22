@@ -75,7 +75,7 @@ public class DiamondTest {
                     case 'F':
                         return 5;
                     default:
-                        throw new IllegalArgumentException("Non-empty character list required.");
+                        throw new IllegalArgumentException();
                 }
             }
         });

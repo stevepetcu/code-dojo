@@ -51,8 +51,6 @@ public class Main {
 
         scanner.close();
 
-        // TODO: Add some validation...
-
         Character inputCharacter = input.charAt(0);
 
         Alphabet alphabet = new Alphabet(ALPHABET);
