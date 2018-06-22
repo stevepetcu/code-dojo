@@ -1,13 +1,28 @@
-# midje-tdd
+# Test-driven development with the Diamond Kata
 
-The project uses [Midje](https://github.com/marick/Midje/).
+**TDD with Clojure and [Midje](https://github.com/marick/Midje/)** version of the Diamond Kata.
 
-## How to run the tests
+## Setting up the environment for first run
 
-`lein midje` will run all tests.
+Setup the docker-machine:
+```bash
+docker-machine create dk.clojure.midje-tdd && eval $(docker-machine env dk.clojure.midje-tdd)
+```
 
-`lein midje namespace.*` will run only tests beginning with "namespace.".
+## Running the tests
 
-`lein midje :autotest` will run all the tests indefinitely. It sets up a
-watcher on the code files. If they change, only the relevant tests will be
-run again.
+### Run all the tests:
+```bash
+make test
+```
+
+### Run the tests under a specified namespace:
+```bash
+make ns-test
+```
+
+### Run all the tests indefinitely:
+```bash
+make auto-test
+```
+This sets up a watcher on the code files. If they change, only the relevant tests will be run again.
