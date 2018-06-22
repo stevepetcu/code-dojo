@@ -1,4 +1,5 @@
-.PHONY: run, test, auto-test, ns-test
+.DEFAULT_GOAL := run
+.PHONY: run test auto-test ns-test
 
 run:
 	docker-compose exec clojure ./bin/console.sh
