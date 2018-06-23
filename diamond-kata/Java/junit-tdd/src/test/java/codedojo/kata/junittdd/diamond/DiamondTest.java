@@ -10,10 +10,8 @@ package test.java.codedojo.kata.junittdd.diamond;
 
 import main.java.codedojo.kata.junittdd.diamond.Alphabet;
 import main.java.codedojo.kata.junittdd.diamond.Diamond;
-import org.hamcrest.CoreMatchers;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 
 import java.util.ArrayList;
@@ -21,6 +19,7 @@ import java.util.Collections;
 import java.util.Random;
 
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
@@ -32,51 +31,45 @@ public class DiamondTest {
     public void setUp() {
         alphabet = mock(Alphabet.class);
 
-        when(alphabet.characterAt(anyInt())).thenAnswer(new Answer<Character>() {
-            @Override
-            public Character answer(InvocationOnMock invocationOnMock) throws IllegalArgumentException {
-                int index = invocationOnMock.getArgument(0);
+        when(alphabet.characterAt(anyInt())).thenAnswer((Answer<Character>) invocationOnMock -> {
+            int index = invocationOnMock.getArgument(0);
 
-                switch (index) {
-                    case 0:
-                        return 'A';
-                    case 1:
-                        return 'B';
-                    case 2:
-                        return 'C';
-                    case 3:
-                        return 'D';
-                    case 4:
-                        return 'E';
-                    case 5:
-                        return 'F';
-                    default:
-                        throw new IllegalArgumentException("Requested character is not in the alphabet.");
-                }
+            switch (index) {
+                case 0:
+                    return 'A';
+                case 1:
+                    return 'B';
+                case 2:
+                    return 'C';
+                case 3:
+                    return 'D';
+                case 4:
+                    return 'E';
+                case 5:
+                    return 'F';
+                default:
+                    throw new IllegalArgumentException("Requested character is not in the alphabet.");
             }
         });
 
-        when(alphabet.indexOf(anyChar())).thenAnswer(new Answer<Integer>() {
-            @Override
-            public Integer answer(InvocationOnMock invocationOnMock) throws IllegalArgumentException {
-                char character = invocationOnMock.getArgument(0);
+        when(alphabet.indexOf(anyChar())).thenAnswer((Answer<Integer>) invocationOnMock -> {
+            char character = invocationOnMock.getArgument(0);
 
-                switch (character) {
-                    case 'A':
-                        return 0;
-                    case 'B':
-                        return 1;
-                    case 'C':
-                        return 2;
-                    case 'D':
-                        return 3;
-                    case 'E':
-                        return 4;
-                    case 'F':
-                        return 5;
-                    default:
-                        throw new IllegalArgumentException();
-                }
+            switch (character) {
+                case 'A':
+                    return 0;
+                case 'B':
+                    return 1;
+                case 'C':
+                    return 2;
+                case 'D':
+                    return 3;
+                case 'E':
+                    return 4;
+                case 'F':
+                    return 5;
+                default:
+                    throw new IllegalArgumentException();
             }
         });
 
@@ -89,7 +82,7 @@ public class DiamondTest {
         Diamond diamond = new Diamond(alphabet);
 
         // THEN
-        assertThat(diamond, CoreMatchers.<Diamond>instanceOf(Diamond.class));
+        assertThat(diamond, instanceOf(Diamond.class));
     }
 
     @Test
@@ -98,7 +91,7 @@ public class DiamondTest {
         Diamond diamond = new Diamond(alphabet, 'C');
 
         // THEN
-        assertThat(diamond, CoreMatchers.<Diamond>instanceOf(Diamond.class));
+        assertThat(diamond, instanceOf(Diamond.class));
     }
 
     @Test
@@ -109,7 +102,7 @@ public class DiamondTest {
         Diamond diamond = new Diamond(alphabet, randomCharacter);
 
         // WHEN
-        ArrayList<String> renderedRows = new ArrayList<String>();
+        ArrayList<String> renderedRows = new ArrayList<>();
         Collections.addAll(renderedRows, diamond.toString().split("\n"));
 
         // THEN
@@ -124,7 +117,7 @@ public class DiamondTest {
         Diamond diamond = new Diamond(alphabet, randomCharacter);
 
         // WHEN
-        ArrayList<String> renderedRows = new ArrayList<String>();
+        ArrayList<String> renderedRows = new ArrayList<>();
         Collections.addAll(renderedRows, diamond.toString().split("\n"));
         String centerRow = renderedRows.get(renderedRows.size() / 2);
 
@@ -140,7 +133,7 @@ public class DiamondTest {
         Diamond diamond = new Diamond(alphabet, randomCharacter);
 
         // WHEN
-        ArrayList<String> renderedRows = new ArrayList<String>();
+        ArrayList<String> renderedRows = new ArrayList<>();
         Collections.addAll(renderedRows, diamond.toString().split("\n"));
         int previousRowIndex, nextRowIndex;
         previousRowIndex = nextRowIndex = renderedRows.size() / 2;
@@ -162,7 +155,7 @@ public class DiamondTest {
         Diamond diamond = new Diamond(alphabet, randomCharacter);
 
         // WHEN
-        ArrayList<String> renderedRows = new ArrayList<String>();
+        ArrayList<String> renderedRows = new ArrayList<>();
         Collections.addAll(renderedRows, diamond.toString().split("\n"));
         ArrayList<ArrayList<String>> transposedDiamondRendering = transposeDiamondRendering(renderedRows);
 
@@ -185,7 +178,7 @@ public class DiamondTest {
         Diamond diamond = new Diamond(alphabet);
 
         // WHEN
-        ArrayList<String> renderedRows = new ArrayList<String>();
+        ArrayList<String> renderedRows = new ArrayList<>();
         Collections.addAll(renderedRows, diamond.toString().split("\n"));
         String centerRow = renderedRows.get(renderedRows.size() / 2);
 
@@ -201,7 +194,7 @@ public class DiamondTest {
         Diamond diamond = new Diamond(alphabet, randomCharacter);
 
         // WHEN
-        ArrayList<String> renderedRows = new ArrayList<String>();
+        ArrayList<String> renderedRows = new ArrayList<>();
         Collections.addAll(renderedRows, diamond.toString().split("\n"));
 
         // THEN
@@ -214,18 +207,18 @@ public class DiamondTest {
     }
 
     private ArrayList<ArrayList<String>> transposeDiamondRendering(ArrayList<String> renderedRows) {
-        ArrayList<ArrayList<String>> splitRows = new ArrayList<ArrayList<String>>();
+        ArrayList<ArrayList<String>> splitRows = new ArrayList<>();
 
         for (String renderedRow : renderedRows) {
-            ArrayList<String> splitRow = new ArrayList<String>();
+            ArrayList<String> splitRow = new ArrayList<>();
             Collections.addAll(splitRow, renderedRow.split(""));
             splitRows.add(splitRow);
         }
 
-        ArrayList<ArrayList<String>> transposedDiamond = new ArrayList<ArrayList<String>>();
+        ArrayList<ArrayList<String>> transposedDiamond = new ArrayList<>();
 
         for (int row = 0; row < splitRows.size(); ++row) {
-            ArrayList<String> transposedDiamondColumn = new ArrayList<String>();
+            ArrayList<String> transposedDiamondColumn = new ArrayList<>();
             for (int column = 0; column < splitRows.get(row).size(); ++column) {
                 if (splitRows.get(column).size() > row && !splitRows.get(column).get(row).matches("\\s+")) {
                     transposedDiamondColumn.add(splitRows.get(column).get(row));

@@ -9,8 +9,8 @@
 package main.java.codedojo.kata.junittdd.diamond;
 
 public class Diamond {
-    private Alphabet alphabet;
-    private Character character;
+    private final Alphabet alphabet;
+    private final Character character;
 
     public Diamond(Alphabet alphabet) {
         this(alphabet, null);
@@ -25,7 +25,7 @@ public class Diamond {
     public String toString() {
         StringBuilder rendering = new StringBuilder();
 
-        int characterIndex, firstCharacterPosition, lastCharacterPosition, verticalPosition, horizontalPosition;
+        int characterIndex, firstCharacterPosition, lastCharacterPosition, verticalPosition;
 
         characterIndex = firstCharacterPosition = lastCharacterPosition = alphabet.indexOf(character);
         verticalPosition = 0;

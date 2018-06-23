@@ -9,19 +9,18 @@
 package test.java.codedojo.kata.junittdd.diamond;
 
 import main.java.codedojo.kata.junittdd.diamond.Alphabet;
-import org.hamcrest.CoreMatchers;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.junit.Assert.assertThat;
 
 public class AlphabetTest {
-    private static final List<Character> CHARACTERS
-            = new ArrayList<Character>(Arrays.asList('A', 'B', 'C', 'D', 'E', 'F', 'G'));
+    private static final List<Character> CHARACTERS = List.of('A', 'B', 'C', 'D', 'E', 'F', 'G');
 
     private Alphabet alphabet;
 
@@ -34,13 +33,13 @@ public class AlphabetTest {
     @Test
     public void initialisation_WillWork_GivenANonEmptyCharacterList() {
         // THEN
-        assertThat(alphabet, CoreMatchers.<Alphabet>instanceOf(Alphabet.class));
+        assertThat(alphabet, instanceOf(Alphabet.class));
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void initialisation_WillThrowException_GivenAnEmptyCharacterList() {
         // GIVEN
-        ArrayList<Character> emptyList = new ArrayList<Character>();
+        ArrayList<Character> emptyList = new ArrayList<>();
 
         // WHEN
         new Alphabet(emptyList);
@@ -55,7 +54,7 @@ public class AlphabetTest {
         int index = alphabet.indexOf(requestedCharacter);
 
         // THEN
-        assertThat(index, CoreMatchers.equalTo(5));
+        assertThat(index, equalTo(5));
     }
 
     @Test(expected = IllegalArgumentException.class) // TODO: Replace with a custom exception.
@@ -76,7 +75,7 @@ public class AlphabetTest {
         char character = alphabet.characterAt(index);
 
         // THEN
-        assertThat(character, CoreMatchers.equalTo('F'));
+        assertThat(character, equalTo('F'));
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
@@ -94,6 +93,6 @@ public class AlphabetTest {
         Character character = alphabet.lastCharacter();
 
         // THEN
-        assertThat(character, CoreMatchers.equalTo('G'));
+        assertThat(character, equalTo('G'));
     }
 }
