@@ -20,7 +20,7 @@ package: check-env
 	docker-compose exec maven mvn clean package
 
 run: check-env
-	docker-compose exec java java -cp target/junit-tdd-1.0-SNAPSHOT.jar main.java.codedojo.kata.junittdd.diamond.Main
+	docker-compose exec java java -cp target/junit-tdd-1.0-SNAPSHOT.jar codedojo.kata.junittdd.diamond.Main
 
 check-env:
 ifneq ($(DOCKER_MACHINE_STATE),Running)
