@@ -1,6 +1,10 @@
-# Code Dojo [![Maintainability](https://api.codeclimate.com/v1/badges/074a86924170499a3aad/maintainability)](https://codeclimate.com/github/stevepetcu/code-dojo/maintainability)
+# Code Dojo 
 
-## Why? [![start with why](https://img.shields.io/badge/start%20with-why%3F-brightgreen.svg?style=flat)](http://www.ted.com/talks/simon_sinek_how_great_leaders_inspire_action)
+[![Maintainability](https://api.codeclimate.com/v1/badges/074a86924170499a3aad/maintainability)](https://codeclimate.com/github/stevepetcu/code-dojo/maintainability)
+
+## Why? 
+
+[![start with why](https://img.shields.io/badge/start%20with-why%3F-brightgreen.svg?style=flat)](http://www.ted.com/talks/simon_sinek_how_great_leaders_inspire_action)
 The aim is to get better together.
 
 A code dojo is a **facilitated learning environment** for the **deliberate practice** of programming.
@@ -11,7 +15,9 @@ The practice sessions must be **focused**, **goal-oriented** group activities, w
 
 Between sessions, trainees are to **reflect** on their performance and how to **improve** it.
 
-## Contributing [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
+## Contributing 
+
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
 
 <hr>
 
