@@ -6,9 +6,8 @@
  * For the full copyright and license information, please view
  * the LICENSE file that was distributed with this source code.
  */
-package test.java.codedojo.kata.junittdd.diamond;
+package codedojo.kata.junittdd.diamond;
 
-import main.java.codedojo.kata.junittdd.diamond.Alphabet;
 import org.junit.Before;
 import org.junit.Test;
 
