@@ -1,4 +1,7 @@
 # Code Dojo
+<a href="https://codeclimate.com/github/stevepetcu/code-dojo/maintainability">
+  <img src="https://api.codeclimate.com/v1/badges/074a86924170499a3aad/maintainability" />
+</a>
 A code dojo is a **facilitated learning environment** for the **deliberate practice** of programming.
 
 We practice **collaborating to write good code**, under **safe circumstances**. 
