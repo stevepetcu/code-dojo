@@ -1,0 +1,21 @@
+version: "3"
+
+services:
+
+  java:
+    build:
+      context: ./docker/java
+    volumes:
+      - ./:/usr/src/testng-akka-tdd-consumer
+    working_dir: /usr/src/testng-akka-tdd-consumer
+    entrypoint: ./docker/java/scripts/entrypoint.sh
+    depends_on:
+      - maven
+
+  maven:
+    build:
+      context: ./docker/maven
+    volumes:
+      - ./:/usr/src/testng-akka-tdd-consumer
+    working_dir: /usr/src/testng-akka-tdd-consumer
+    entrypoint: ./docker/maven/scripts/entrypoint.sh
