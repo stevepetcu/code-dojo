@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+
+  java:
+    build:
+      context: ./docker/java
+    volumes:
+      - ./:/usr/src/testng-tdd
+    working_dir: /usr/src/testng-tdd
+    entrypoint: ./docker/java/scripts/entrypoint.sh
+
+  maven:
+    build:
+      context: ./docker/maven
+    volumes:
+      - ./:/usr/src/testng-tdd
+    working_dir: /usr/src/testng-tdd
+    entrypoint: ./docker/maven/scripts/entrypoint.sh
