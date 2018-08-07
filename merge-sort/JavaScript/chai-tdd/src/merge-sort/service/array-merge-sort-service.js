@@ -14,7 +14,7 @@ class ArrayMergeSortService {
             return mergeSort(this.sort(firstHalf), this.sort(secondHalf));
         };
 
-        let mergeSort = (firstArr, secondArr) => {
+        const mergeSort = (firstArr, secondArr) => {
             let i = 0, j = 0, totalCount = firstArr.length + secondArr.length;
             let result = [];
 
