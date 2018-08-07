@@ -1,0 +1,15 @@
+{
+  "name": "chai-tdd-merge-sort",
+  "version": "0.1.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha test/**/*spec.js",
+    "start": "node src/app.js"
+  },
+  "author": "Stefan Petcu",
+  "license": "MIT",
+  "dependencies": {
+
+  }
+}
