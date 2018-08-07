@@ -1,8 +1,8 @@
 'use strict';
 
-class ArrayMergeSorter {
+class ArrayMergeSortService {
     constructor() {
-        this.sort = function (arr) {
+        this.sort = (arr) => {
             if (arr.length === 1) {
                 return arr;
             }
@@ -14,7 +14,7 @@ class ArrayMergeSorter {
             return mergeSort(this.sort(firstHalf), this.sort(secondHalf));
         };
 
-        let mergeSort = function (firstArr, secondArr) {
+        let mergeSort = (firstArr, secondArr) => {
             let i = 0, j = 0, totalCount = firstArr.length + secondArr.length;
             let result = [];
 
@@ -43,4 +43,4 @@ class ArrayMergeSorter {
     }
 }
 
-module.exports = ArrayMergeSorter;
+module.exports = ArrayMergeSortService;

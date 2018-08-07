@@ -13,3 +13,4 @@ services:
     entrypoint: ./docker/node/scripts/entrypoint.sh
     environment:
       - NODE_ENV=development
+      - PORT=8081
