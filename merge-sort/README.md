@@ -8,9 +8,15 @@
 
 ## Example
 
-Given: `10 3 5 -1 22 11 -3`
+Given: 
+```
+10 3 5 -1 22 11 -3
+```
 
-Expected result: `-3 -1 3 5 10 11 22`
+Expected result: 
+```
+-3 -1 3 5 10 11 22
+```
 
 ## Tips:
 
