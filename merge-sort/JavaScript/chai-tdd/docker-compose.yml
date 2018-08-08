@@ -7,8 +7,8 @@ services:
       context: ./docker/node
     volumes:
       - ./:/home/node/app
-    expose:
-      - "8081"
+    ports:
+      - "8081:8081"
     working_dir: /home/node/app
     entrypoint: ./docker/node/scripts/entrypoint.sh
     environment:

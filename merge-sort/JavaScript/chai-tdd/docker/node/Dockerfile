@@ -1,3 +1,3 @@
-FROM node:8.11
+FROM node:10
 
 USER node
