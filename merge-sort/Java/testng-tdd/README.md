@@ -3,7 +3,7 @@
 ## Setting up the environment for first run
 Setup the docker machine:
 ```bash
-docker-machine create dk.java.junit-tdd && eval $(docker-machine env dk.java.junit-tdd)
+docker-machine create ms.java.testng-tdd && eval $(docker-machine env ms.java.testng-tdd)
 ```
 
 Make all the things:
