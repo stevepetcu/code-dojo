@@ -25,19 +25,19 @@ class HeapNode {
             // TODO: Implement function.
         };
 
-        this.getIndex = (index) => {
+        this.setIndex = (index) => {
             // TODO: Implement function.
         };
 
-        this.getParentIndex = (index) => {
+        this.setParentIndex = (index) => {
             // TODO: Implement function.
         };
 
-        this.getLeftChildIndex = (index) => {
+        this.setLeftChildIndex = (index) => {
             // TODO: Implement function.
         };
 
-        this.getRightChildIndex = (index) => {
+        this.setRightChildIndex = (index) => {
             // TODO: Implement function.
         };
     }
