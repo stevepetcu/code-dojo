@@ -1,5 +1,6 @@
 'use strict';
 
-const should = require('chai').should();
+const chai = require('chai');
+const should = chai.should(), assert = chai.assert;
 
-module.exports = should;
+module.exports = {should, assert};

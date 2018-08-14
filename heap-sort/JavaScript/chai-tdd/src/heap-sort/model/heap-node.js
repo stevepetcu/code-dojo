@@ -2,43 +2,51 @@
 
 class HeapNode {
     constructor(value) {
-        const _value = value;
+        const _value = parseInt(value);
         let _index, _parentIndex, _leftChildIndex, _rightChildIndex;
 
         this.getValue = () => {
-            // TODO: Implement function.
+            return _value;
         };
 
-        this.getIndex = (index) => {
-            // TODO: Implement function.
+        this.getIndex = () => {
+            return _index;
         };
 
-        this.getParentIndex = (index) => {
-            // TODO: Implement function.
+        this.getParentIndex = () => {
+            return _parentIndex;
         };
 
-        this.getLeftChildIndex = (index) => {
-            // TODO: Implement function.
+        this.getLeftChildIndex = () => {
+            return _leftChildIndex;
         };
 
-        this.getRightChildIndex = (index) => {
-            // TODO: Implement function.
+        this.getRightChildIndex = () => {
+            return _rightChildIndex;
         };
 
         this.setIndex = (index) => {
-            // TODO: Implement function.
+            _index = index;
+
+            return this;
         };
 
         this.setParentIndex = (index) => {
-            // TODO: Implement function.
+            _parentIndex = index;
+
+            return this;
         };
 
         this.setLeftChildIndex = (index) => {
-            // TODO: Implement function.
+            _leftChildIndex = index;
+
+            return this;
         };
 
         this.setRightChildIndex = (index) => {
-            // TODO: Implement function.
+            _rightChildIndex = index;
+
+            return this;
         };
     }
 }
