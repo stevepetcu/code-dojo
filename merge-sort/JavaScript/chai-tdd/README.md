@@ -6,3 +6,4 @@
 - add JsonSchema validation
 - finish this readme
 
+Docker-machine name: `ms.js.chai-tdd`
